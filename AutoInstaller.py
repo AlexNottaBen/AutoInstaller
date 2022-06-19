@@ -103,6 +103,7 @@ def Logo():
     print("#            AutoInstaller           #")
     print("######################################")
     print("By AlexNottaBen")
+    print("19/06/2022")
 
 def ClearScreen():
     os.system("clear")
