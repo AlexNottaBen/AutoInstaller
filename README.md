@@ -1,2 +1,2 @@
 # AutoInstaller
-An easy way to install multiple GNU/Linux Disrtoes applications based on debian.
+An easy way to install multiple GNU/Linux Disrtoes applications based on Debian.
