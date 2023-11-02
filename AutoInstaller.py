@@ -4,8 +4,6 @@ import os
 import sys
 from getpass import getpass
 
-EnableTempCaffiene = False
-
 
 #sudo dpkg --configure -a
 
@@ -70,7 +68,7 @@ logo()
 ChooseMethodForDebian = False
 ChooseflatpakMethod = False
 
-Isapt_clean = "0"
+do_clean = "0"
 IsFixingDependencies = "0"
 IsUpdate = "0"
 IsUpgrade = "0"
@@ -89,13 +87,10 @@ Installblender = "0"
 InstallSweetHome3D = "0"
 InstallScratch = "0"
 InstallScratch3 = "0"
-InstallCaffeine = "0"
 InstallFileZilla = "0"
 InstallCaja = "0"
-InstallCajaDrobBox = "0"
 InstallTimeShift = "0"
 InstallPeaZip = "0"
-flatpakInstallPeaZip = "0"
 InstallKdenline = "0"
 InstallOpenShot = "0"
 InstallAudacity = "0"
@@ -110,30 +105,21 @@ InstallLibreWolf = "0"
 InstallThunderBird = "0"
 InstallChromium = "0"
 InstallUnGoogledChromium = "0"
-InstallEdge = "0"
-InstallChrome = "0"
 InstallTor = "0"
 InstallShotWell = "0"
-InstallXnViewMP = "0"
 InstallVSC = "0"
-InstallSublimeText = "0"
 InstallLibreOffice = "0"
 InstallBleachBit = "0"
 InstallStacer = "0"
 InstallCheese = "0"
 InstallGparted = "0"
 InstallQbitTorrent = "0"
-InstallTransmission = "0"
 InstallSSR = "0"
 InstallOBS = "0"
 InstallSteam = "0"
-InstallZoom = "0"
-InstallViber = "0"
 InstallPidgin = "0"
 InstallTelegram = "0"
 InstallTeams = "0"
-InstallSkype = "0"
-InstallDiscord = "0"
 InstallLutris = "0"
 InstallGpp = "0"
 InstallArduinoIDLE = "0"
@@ -151,12 +137,8 @@ InstallMediaCodes = "0"
 InstallKolourPaint = "0"
 InstallDoubleCmd = "0"
 InstallGnomeDisk = "0"
-InstallDoubleCmd = "0"
 InstallBaobab = "0"
-ProfPythonDeveloper = "0"
-InstallUnity = "0"
 InstallBlender = "0"
-InstallAtom = "0"
 InstallGnomeSoftware = "0"
 
 print("0 - Custom")
@@ -181,44 +163,33 @@ if Selected == "1":
     Isfix_plank = "1"
     InstallVLC = "1"
     InstallGIMP = "1"
-    InstallTimeShift = "0"
     InstallPeaZip = "1"
     InstallVBOX = "1"
-    InstallNotepadplusplus = "0"
     InstallWine = "1"
-    InstallPlayOnLinux = "0"
     InstallLibreWolf = "1"
-    InstallEdge = "0"
-    InstallTor = "0"
-    InstallVSC = "0"
+    InstallTor = "1"
+    InstallVSC = "1"
     InstallUnGoogledChromium = "1"
     InstallLibreOffice = "1"
-    InstallBleachBit = "0"
     InstallGparted = "1"
     InstallQbitTorrent = "1"
     InstallSSR = "1"
     InstallSteam = "1"
-    InstallZoom = "0"
     InstallTelegram = "2"
     InstallTeams = "1"
-    InstallCaffeine = "0"
     InstallGpp = "1"
     InstallArduinoIDLE = "0"
     InstallPython3IDLE = "0"
-    Isapt_clean = "1"
+    do_clean = "1"
     IsFixingDependencies = "1"
     InstallShotWell = "1"
     InstallStacer = "1"
-    InstallPyCharm = "0"
-    InstallCaja = "0"  #  For Open The Trash by The Plank on Debian
     InstallCodeBlocks = "1"
-    InstallKrita = "0"
     InstallKdenline = "1"
     InstallKolourPaint = "1"
     InstallGnomeDisk = "1"
     InstallDoubleCmd = "1"
     InstallBaobab = "1"
-    InstallAtom = "0"
     InstallGnomeSoftware = "1"
     ChooseMethodForDebian = True
     ChooseflatpakMethod = True
@@ -231,31 +202,25 @@ if Selected == "2":
     Isfix_plank = "1"
     InstallVLC = "1"
     InstallGIMP = "1"
-    InstallTimeShift = "1"
     InstallPeaZip = "1"
     InstallVBOX = "1"
     InstallNotepadplusplus = "0"
     InstallWine = "1"
-    InstallPlayOnLinux = "1"
     InstallLibreWolf = "1"
-    InstallChromium = "0"
     InstallUnGoogledChromium = "1"
     InstallTor = "1"
-    InstallVSC = "0"
+    InstallVSC = "1"
     InstallLibreOffice = "1"
-    InstallBleachBit = "0"
     InstallGparted = "1"
     InstallQbitTorrent = "1"
     InstallSSR = "1"
     InstallSteam = "1"
     InstallTelegram = "2"
-    InstallTeams = "0"
-    InstallCaffeine = "0"
-    Isapt_clean = "1"
+    InstallTeams = "1"
+    do_clean = "1"
     IsFixingDependencies = "1"
     InstallShotWell = "1"
-    InstallXnViewMP = "0"
-    InstallStacer = "0"
+    InstallStacer = "1"
     InstallKate = "1"
     InstallGpp = "1"
     InstallPyCharm = "0"
@@ -268,7 +233,6 @@ if Selected == "2":
     InstallDoubleCmd = "1"
     InstallBaobab = "1"
     InstallKolourPaint = "1"
-    InstallAtom = "1"
     InstallGnomeSoftware = "1"
     ChooseMethodForDebian = False
     ChooseflatpakMethod = False
@@ -289,10 +253,9 @@ if Selected == "3":
     InstallGparted = "1"
     InstallQbitTorrent = "1"
     InstallSSR = "1"
-    InstallZoom = "1"
     InstallTeams = "1"
     InstallGnomeSoftware = "1"
-    Isapt_clean = "1"
+    do_clean = "1"
     IsFixingDependencies = "1"
 
 if Selected == "4":
@@ -305,7 +268,7 @@ if Selected == "4":
     InstallPlayOnLinux = "1"
     InstallLutris = "1"
     InstallGnomeSoftware = "1"
-    Isapt_clean = "1"
+    do_clean = "1"
     IsFixingDependencies = "1"
 
 if Selected == "5":
@@ -314,7 +277,7 @@ if Selected == "5":
     Isfix_plank = "1"
     InstallSSR = "1"
     InstallTeams = "1"
-    Isapt_clean = "1"
+    do_clean = "1"
     IsFixingDependencies = "1"
 
 if Selected == "6":
@@ -324,7 +287,7 @@ if Selected == "6":
     InstallGIMP = "1"
     InstallVLC = "1"
     InstallKdenline = "1"
-    Isapt_clean = "1"
+    do_clean = "1"
     IsFixingDependencies = "1"
 
 if Selected == "7":
@@ -336,7 +299,7 @@ if Selected == "8":
     Installflatpak = "0"
     IsUpdate = "1"
     IsUpgrade = "1"
-    Isapt_clean = "1"
+    do_clean = "1"
     IsFixingDependencies = "1"
 
 if Selected == "F":
@@ -359,7 +322,7 @@ if Selected == "F":
     InstallQbitTorrent = "1"
     InstallSSR = "1"
     InstallTeams = "0"
-    Isapt_clean = "1"
+    do_clean = "1"
     IsFixingDependencies = "1"
     InstallXnViewMP = "1"
     InstallCaja = "1"  #  For Open The Trash by The Plank on Debian
@@ -395,20 +358,6 @@ if Selected == "Y":
     ChooseMethodForDebian = False
     ChooseflatpakMethod = False
 
-if Selected == "P1":
-    update_packege(root_password)
-    UpgratePackege(root_password)
-    print("\n===================== Ipython3 and Git =====================")
-    apt_install(root_password,"git")
-    apt_install(root_password,"ipython3")
-    InstallPyCharm = input("\n\n[Open-Source] PyCharm Community - Community IDE Editor (No = 0/Yes = 1/Yes = 2[flatpak]): = ")
-
-if Selected == "P2":
-    IsUpdate = "1"
-    IsUpgrade = "1"
-    InstallGodotEngine = "1"
-    InstallBlender = "2"
-
 if Selected == "0":
     IsUpdate = "1"
     IsUpgrade = "1"
@@ -419,7 +368,7 @@ if Selected == "0":
     Isfix_gedit = input("Use this If Cyrillic is not displayed in the Gedit text editor! (No = 0/Yes = 1): = ")
     Isfix_plank = input("Remove anchor icon in Plank (No = 0/Yes = 1): = ")
     print("==================== Install Programs ====================")
-    Installflatpak = input("[Open-Source] flatpak - System for collecting self-sufficient packages (No = 0/Yes = 1): = ")
+    Installflatpak = input("[Open-Source] Flatpak - System for collecting self-sufficient packages (No = 0/Yes = 1): = ")
     InstallVLC = input("[Open-Source] VLC - MediaPlayer (No = 0/Yes = 1): = ")
     InstallGIMP = input("[Open-Source] GIMP - Raster Graphic Editor (No = 0/Yes = 1): = ")
     InstallKrita = input("[Open-Source] Krita - Raster Graphic Editor (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
@@ -430,10 +379,8 @@ if Selected == "0":
     InstallSweetHome3D = input("[Open-Source] Sweet Home 3D - 3D Home Editor (No = 0/Yes = 1): = ")
     InstallScratch = input("[Open-Source] Scratch - Game Developer Tools (No = 0/Yes = 1): = ")
     InstallScratch3 = input("[Open-Source] Scratch 3 - Game Developer Tools (No = 0/Yes = 1): = ")
-    InstallCaffeine = input("[Open-Source] Caffeine - Deactive sleep mode (No = 0/Yes = 1): = ")
     InstallFileZilla = input("[Open-Source] FileZilla - FTP Client (No = 0/Yes = 1): = ")
     InstallCaja = input("[Open-Source] Caja - The File Manager of MATE (No = 0/Yes = 1): = ")
-    InstallCajaDrobBox = input("[Addons] Caja DrobBox - Alternative to One Drive (No = 0/Yes = 1): = ")
     InstallTimeShift = input("[Open-Source] TimeShift - Alternative to Time Machine (No = 0/Yes = 1): = ")
     InstallPeaZip = input("[Open-Source] PeaZip - Alternative to WinRar (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
     InstallKdenline = input("[Open-Source] Kdenline - Open KDE Video Editor (No = 0/Yes = 1): = ")
@@ -452,16 +399,12 @@ if Selected == "0":
     InstallFireFox = input("[Open-Source] FireFox - Open Web-broweser(No = 0/Yes = 1): = ")
     InstallChromium = input("[Open-Source] Chromium - Open Web-broweser(No = 0/Yes = 1): = ")
     InstallUnGoogledChromium = input("[Open-Source] Ungoogled Chromium - Open Web-broweser(No = 0/Yes = 1): = ")
-    InstallEdge = input("[Proprietary Software] Edge dev - Web-broweser by Microsoft (No = 0/Yes = 1): = ")
-    InstallChrome = input("[Proprietary Freeware] Google Chrome - Web-broweser by Google (No = 0/Yes = 1): = ")
     InstallTor = input("[Open-Source] Tor Browser - Web-broweser by Tor Project (No = 0/Yes = 1): = ")
     InstallShotWell = input("[Open-Source] ShotWell - Image Viewer, Alternative to XnView MP (No = 0/Yes = 1): = ")
-    InstallXnViewMP = input("[Proprietary Freeware] XnView MP - Image Viewer (No = 0/Yes = 1): = ")
     InstallKate = input("[Open-Source] Kate - KDE Text Editor, Alternative to Sublime Text(No = 0/Yes = 1): = ")
     InstallMousePad = input("[Open-Source] MousePad - XFCE Text Editor (No = 0/Yes = 1): = ")
     InstallPyCharm = input("[Open-Source] PyCharm Community - Community IDE Editor (No = 0/Yes = 1/Yes = 2[flatpak]): = ")
-    InstallSublimeText  = input("[Proprietary] Sublime Text - Text Editor (No = 0/Yes = 1): = ")
-    InstallVSC = input("[Proprietary] Visual Studio Code - Development Environment (No = 0/Yes = 1): = ")
+    InstallVSC = input("[Open-Source] VScodium - Development Environment (No = 0/Yes = 1): = ")
     InstallLibreOffice = input("[Open-Source] Libre Office - OpenSource Office (No = 0/Yes = 1): = ")
     InstallBleachBit = input("[Open-Source] BleachBit - Alternative to Piriform Capt_clean (No = 0/Yes = 1): = ")
     InstallStacer = input("[Open-Source] Stacer - Alternative to Piriform Capt_clean (No = 0/Yes = 1): = ")
@@ -472,20 +415,14 @@ if Selected == "0":
     InstallSSR = input("[Open-Source] Simple Screen Recorder - Screen Recorder  (No = 0/Yes = 1): = ")
     InstallOBS = input("[Open-Source] OBS Studio - Screen Recorder  (No = 0/Yes = 1): = ")
     InstallSteam = input("[Proprietary Freeware] Steam - Center For Games and Software (No = 0/Yes = 1): = ")
-    InstallZoom = input("[Proprietary Freemium] Zoom - For Vidio Rings (No = 0/Yes = 1): = ")
-    InstallViber = input("[Proprietary Shareware] Viber - For Chating (No = 0/Yes = 1): = ")
     InstallPidgin = input("[Open-Source] Pidgin - For Chating (No = 0/Yes = 1): = ")
     InstallTelegram = input("[Open-Source Client/Proprietary Server] Telegram - For Chating (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
     InstallTeams = input("[Proprietary Software] Microsoft Teams - For Study (No = 0/Yes = 1): = ")
-    InstallDiscord = input("[Proprietary Software] Discord - Modern Apps For Chating, Vidio Rings (No = 0/Yes = 1): = ")
-    InstallSkype = input("[Proprietary Software] Microsoft Skype - For Vidio Rings (No = 0/Yes = 1): = ")
     InstallGpp = input("[Open-Source] G++ - C++ Compiler (No = 0/Yes = 1): = ")
     InstallArduinoIDLE = input("[Open-Source] Arduino IDLE - IDLE for Arduino (No = 0/Yes = 1): = ")
     InstallPython3IDLE = input("[Open-Source] Python3 IDLE - IDLE for Python (No = 0/Yes = 1): = ")
-    InstallAtom = input("[Open-Source] Atom - IDLE (for Python) (No = 0/Yes = 1): = ")
     InstallClamAV = input("[Open-Source] ClamAV - AntiVirus Program(No = 0/Yes = 1): = ")
     InstallGodotEngine = input("[Open-Source] Godot Engine - Game Engine(No = 0/Yes = 1[flatpak]): = ")
-    InstallUnity = input("[Proprietary Software] Unity Engine - Game Engine(No = 0/Yes = 1): = ")
     InstallCodeBlocks = input("[Open-Source] Code::Blocks - Alternative to Dev-C++ (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
     InstallGnomeDisk = input("[Open-Source] Gnome Disk - Disk Utility (No = 0/Yes = 1/Yes[flatpak]): = ")
     InstallDoubleCmd = input("[Open-Source] Double commander - Alternative to Total commander (No = 0/Yes = 1): = ")
@@ -493,21 +430,13 @@ if Selected == "0":
 
 print("\n==================== Start ====================\n")
 
-if EnableTempCaffiene:
-    #Temp Caffeine
-    what_is_it("Temp Caffeine")
-    if not ChooseMethodForDebian:
-        execute_as_root(root_password,"sudo add-apt-repository ppa:caffeine-developers/ppa")
-    update_packege(root_password)
-    apt_install(root_password,"caffeine")
-    input("Active Caffeine and press any key! ")
-
 #Update
 if IsUpdate == "1":
 	update_packege(root_password)
 if IsUpgrade == "1":
 	upgrade_packeges(root_password)
 
+# Check
 if UpdateMicroCodeIntel == "1":
     what_is_it("MicroCode For Intel")
     apt_install(root_password,"--reinstall intel-microcode")
@@ -516,6 +445,7 @@ if UpdateMicroCodeAmd64 == "1":
     what_is_it("MicroCode For Amd64")
     apt_install(root_password,"--reinstall amd64-microcode")
 
+# TODO Redo
 if InstallMediaCodes == "1":
     what_is_it("Media Codes")
     apt_install(root_password,"ubuntu-restricted-extras")
@@ -538,18 +468,6 @@ if InstallVLC == "1":
 if InstallVLC == "1":
     what_is_it("MPV")
     apt_install(root_password,"mpv")
-
-    '''
-	To install the latest VLC media player you might want to consider the VLC installation
-	from a 3rd-party PPA repository. To do so first step is to include VLC PPA repository:
-
-	$ sudo add-apt-repository ppa:videolan/master-daily
-
-	Next, install the actual VLC player:
-
-	$ sudo apt install vlc
-
-    '''
 
 if InstallGIMP == "1":
     what_is_it("GIMP")
@@ -581,12 +499,13 @@ if InstallBlender == "1":
     apt_install(root_password,"blender")
 elif InstallBlender == "2":
     what_is_it("Blender")
-    execute_as_root(root_password,"flatpak install flathub <!!!> -y") #ToDo
+    execute_as_root(root_password,"flatpak install flathub <!!!> -y") # TODO
 
 if InstallSweetHome3D == "1":
     what_is_it("SweetHome3D")
     apt_install(root_password,"sweethome3d")
 
+# TODO Add Turbowarp
 if InstallScratch == "1":
     what_is_it("Scratch")
     apt_install(root_password,"scratch")
@@ -603,10 +522,6 @@ if InstallFileZilla == "1":
 if InstallCaja == "1":
     what_is_it("Caja")
     apt_install(root_password,"caja")
-
-if InstallCajaDrobBox == "1":
-    what_is_it("Caja - DrobBox")
-    apt_install(root_password,"caja-dropbox")
 
 if InstallKdenline == "1":
     what_is_it("Kdenline")
@@ -631,6 +546,7 @@ if InstallGrubCustomizer == "1":
     what_is_it("GrubCustomizer")
     apt_install(root_password,"grub-customizer")
 
+# TODO Check
 if InstallVBOX == "1":
     what_is_it("Virtualbox")
     if ChooseMethodForDebian:
@@ -670,15 +586,6 @@ if InstallTelegram == "1":
     what_is_it("Telegram")
     # TODO !!!
 
-if InstallViber == "1":
-    what_is_it("Viber")
-    execute_as_root(root_password,"wget https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb")
-    apt_install(root_password,"./viber.deb")
-
-if InstallPidgin == "1":
-    what_is_it("Pidgin")
-    apt_install(root_password,"pidgin")
-
 if InstallWine == "1":
     what_is_it("Wine")
     apt_install(root_password,"wine")
@@ -687,6 +594,7 @@ if InstallGparted == "1":
     what_is_it("Gparted")
     apt_install(root_password,"gparted")
 
+# TODO Check
 if InstallPlayOnLinux == "1":
     what_is_it("PlayOnLinux")
     if ChooseMethodForDebian:
@@ -709,22 +617,11 @@ if InstallLutris == "1":
     update_packege(root_password)
     apt_install(root_password,"lutris")
 
-if InstallDiscord == "1":
-    what_is_it("Discord")
-    execute_as_root(root_password,"wget https://dl.discordapp.net/apps/linux/0.0.18/discord-0.0.18.deb")
-    apt_install(root_password,"./discord-0.0.18.deb")
-    execute_as_root(root_password,"sudo rm discord-0.0.18.deb")
-
-if InstallSkype == "1":
-    what_is_it("MS Skype")
-    execute_as_root(root_password,"wget https://go.skype.com/skypeforlinux-64.deb")
-    apt_install(root_password,"./skypeforlinux-64.deb")
-    execute_as_root(root_password,"sudo rm ./skypeforlinux-64.deb --yes")
-
 if InstallThunderBird == "1":
     what_is_it("ThunderBird")
     apt_install(root_password,"thunderbird")
 
+# TODO Check
 if InstallLibreWolf == "1":
     what_is_it("LibreWolf")
     execute_as_root(root_password,'distro=$(if echo " bullseye focal impish jammy uma una " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi) && echo "deb [arch=amd64] http://deb.librewolf.net $distro main" | sudo tee /etc/apt/sources.list.d/librewolf.list && sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg && sudo apt update -y && sudo apt install librewolf -y')
@@ -750,20 +647,6 @@ if InstallUnGoogledChromium == "1":
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.github.Eloston.UngoogledChromium -y")
 
-if InstallEdge == "1":
-    what_is_it("MS Edge")
-    execute_as_root(root_password,"curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg")
-    execute_as_root(root_password,"sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/")
-    execute_as_root(root_password," sudo sh -c 'echo " + '"deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"' + " > /etc/apt/sources.list.d/microsoft-edge-dev.list'")
-    execute_as_root(root_password,"sudo rm microsoft.gpg")
-    update_packege(root_password)
-    apt_install(root_password,"microsoft-edge-dev")
-
-if InstallChrome == "1":
-    what_is_it("Google Chrome")
-    execute_as_root(root_password,"wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb")
-    execute_as_root(root_password,"sudo dpkg -i google-chrome-stable_current_amd64.deb")
-
 if InstallTor == "1":
     what_is_it("Tor Browser")
     apt_install(root_password,"torbrowser-launcher")
@@ -777,10 +660,6 @@ if InstallShotWell == "1":
     what_is_it("ShotWell")
     apt_install(root_password,"shotwell")
 
-if InstallXnViewMP == "1":
-    what_is_it("XnView MP")
-    execute_as_root(root_password,"wget https://download.xnview.com/XnViewMP-linux-x64.deb")
-    execute_as_root(root_password,"sudo dpkg -i XnViewMP-linux-x64.deb")
 
 if InstallTimeShift == "1":
     what_is_it("TimeShift")
@@ -789,6 +668,7 @@ if InstallTimeShift == "1":
     update_packege(root_password)
     apt_install(root_password,"timeshift")
 
+# TODO Redo installation processs
 if InstallPeaZip == "1":
     what_is_it("PeaZip")
     execute_as_root(root_password,"wget https://github.com/peazip/PeaZip/releases/download/7.8.0/peazip_7.8.0.LINUX.x86_64.GTK2.deb")
@@ -804,6 +684,7 @@ if InstallPeaZip == "2":
     execute_as_root(root_password,"flatpak install flathub io.github.peazip.PeaZip -y")
 
 if InstallVSC == "1":
+    # TODO Replace with VScodium
     what_is_it("Visual Studio Code")
     apt_install(root_password,"software-properties-common apt-transport-https wget")
     execute_as_root(root_password,"wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -")
@@ -812,6 +693,7 @@ if InstallVSC == "1":
     apt_install(root_password,"code")
 
 if InstallVSC == "1":
+    # TODO Replace with VScodium
     what_is_it("Visual Studio Code [flatpak]")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.visualstudio.code -y")
@@ -829,20 +711,9 @@ if InstallKate == "1":
     what_is_it("Kate")
     apt_install(root_password,"kate")
 
-if InstallMousePad  == "1":
+if InstallMousePad == "1":
     what_is_it("MousePad")
     apt_install(root_password,"mousepad")
-
-if InstallSublimeText == "1": # Delete this!
-    what_is_it("Sublime Text")
-    execute_as_root(root_password,"wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -")
-    execute_as_root(root_password,'sudo apt-add-repository "deb https://download.sublimetext.com/ apt/stable/')
-    execute_as_root(root_password,"sudo apt install libgtk2.0-0")
-
-if InstallSublimeText == "2":
-    what_is_it("Sublime Text [flatpak]")
-    flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub com.sublimetext.three -y")
 
 if InstallLibreOffice == "1":
     what_is_it("LibreOffice")
@@ -871,10 +742,6 @@ if InstallQbitTorrent == "1":
     what_is_it("qBittorrent")
     apt_install(root_password,"qbittorrent")
 
-if InstallTransmission == "1":
-    what_is_it("Transmission")
-    apt_install(root_password,"transmission")
-
 if InstallSSR == "1":
     what_is_it("Simple Screen Recorder")
     update_packege(root_password)
@@ -885,11 +752,6 @@ if InstallOBS == "1":
     update_packege(root_password)
     apt_install(root_password,"obs-studio")
 
-if InstallZoom == "1":
-    what_is_it("Zoom")
-    execute_as_root(root_password,"wget https://zoom.us/client/latest/zoom_amd64.deb")
-    apt_install(root_password,"./zoom_amd64.deb")
-
 if InstallSteam == "1":
     what_is_it("Steam")
     apt_install(root_password,"steam")
@@ -899,6 +761,7 @@ if InstallSteam == "2":
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.valvesoftware.Steam -y")
 
+# TODO REDO
 if InstallTeams == "1":
     what_is_it("MS Teams")
     execute_as_root(root_password,"curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -")
@@ -910,6 +773,8 @@ if InstallTeams == "2":
     what_is_it("MS Teams [flatpak]")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.microsoft.Teams -y")
+# TODO REDO *
+
 
 if InstallGpp == "1":
     what_is_it("G++")
@@ -926,21 +791,10 @@ if InstallPython3IDLE == "1":
     what_is_it("Python IDLE")
     execute_as_root(root_password,"sudo apt-get install idle3 --yes")
 
-if InstallAtom == "1":
-    what_is_it("Atom")
-    execute_as_root(root_password,"flatpak install flathub io.atom.Atom -y")
-
 if InstallGnomeSoftware == "1":
     what_is_it("Gnome Software")
     execute_as_root(root_password,"sudo snap remove gnome-software")
     apt_install(root_password,"gnome-software gnome-software-plugin-flatpak")
-
-if InstallUnity == "1":
-    what_is_it("Unity Hub")
-    execute_as_root(root_password,"sudo sh -c 'echo \"deb https://hub.unity3d.com/linux/repos/deb stable main\" > /etc/apt/sources.list.d/unityhub.list'")
-    execute_as_root(root_password,"wget -qO - https://hub.unity3d.com/linux/keys/public | sudo apt-key add -")
-    update_packege(root_password)
-    execute_as_root(root_password,"sudo apt-get install unityhub --yes")
 
 if InstallClamAV == "1":
     what_is_it("ClamAV")
@@ -984,7 +838,7 @@ if IsFixingDependencies == "1":
         execute_as_root(root_password,"sudo apt install dpkg --fix-missing")
         execute_as_root(root_password,"sudo dpkg --configure -a")
 
-if Isapt_clean == "1":
+if do_clean == "1":
     apt_clean(root_password)
 
 print("\n===================== End =====================")
