@@ -10,31 +10,6 @@ EnableTempCaffiene = False
 
 #sudo dpkg --configure -a
 
-''' === Note ===
-
-To add the PPA, open terminal from the Dash or by pressing Ctrl+Alt+T. When it opens, run command:
-
-sudo add-apt-repository ppa:caffeine-developers/ppa
-
-After that, update package cache and install the indicator by running below two commands one by one:
-
-sudo apt-get update
-
-sudo apt-get install caffeine
-
-Now to run the caffeine indicator from terminal easily open your terminal and run the command:
-
-caffeine
-
-Note that whenever you start a command by first letters then use the tricky double tab key to autocomplete or show all commands starting with those letters.
-
-===
-
-sudo add-apt-repository ppa:nilarimogard/webupd8
-sudo apt-get update
-sudo apt-get install caffeine-plus
-
-'''
 def execute_as_root(root_password,command):
     os.system('echo %s|sudo -S %s' % (root_password,command))
 
@@ -52,9 +27,6 @@ def upgrade_packeges(root_password):
 def apt_install(root_password,program_name):
     os.system('echo %s|sudo -S %s' % (root_password, "sudo apt install " + program_name + " --yes"))
 
-#def SimpleBackportsInstall(root_password,program_name):
-#   os.system('echo %s|sudo -S %s' % (root_password, "sudo apt install -t stretch-backports " + program_name + " --yes"))
-
 def SnapRefresh(root_password):
     if IsAllowSnap:
         print("\n==================== Snap Refresh ====================")
@@ -67,15 +39,12 @@ def SnapRefresh(root_password):
 def flatpak(root_password):
     what_is_it("flatpak")
     apt_install(root_password,"flatpak")
-    #if not ChooseMethodForDebian:
-        #execute_as_root(root_password,"sudo add-apt-repository ppa:alexlarsson/flatpak") # Error. No packages for "jammy" release.
     update_packege(root_password)
     execute_as_root(root_password,"flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
-    #execute_as_root(root_password,"flatpak update") #almost aborted!
 
 def Snapapt_install(root_password,program_name):
     if IsAllowSnap:
-        os.system('echo %s|sudo -S %s' % (root_password, "sudo snap install " + program_name))# No "--yes"
+        os.system('echo %s|sudo -S %s' % (root_password, "sudo snap install " + program_name))
     else:
         print("Snap is Detected!\nIsAllowSnap = False")
 
@@ -85,7 +54,6 @@ def fix_plank(root_password):
     print("Done!")
 
 def fix_gedit(root_password):
-    #gsettings set org.gnome.gedit.preferences.encodings candidate-encodings "['UTF-8', 'WINDOWS-1251', 'KOI8-R', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
     print("==================== Fix Gedit ====================")
     os.system('echo %s|sudo -S %s' % (root_password,'gsettings set org.gnome.gedit.preferences.encodings candidate-encodings' + '"' + "['UTF-8', 'WINDOWS-1251', 'KOI8-R', 'CURRENT', 'ISO-8859-15', 'UTF-16']" + '"'))
     print("Done!")
@@ -107,7 +75,6 @@ def logo():
 
 def clear():
     os.system("clear")
-
 
 #Begin
 clear()
@@ -189,7 +156,7 @@ InstallGpp = "0"
 InstallArduinoIDLE = "0"
 InstallPython3IDLE = "0"
 InstallClamAV = "0"
-InstallIPTables = "0" #!!!
+InstallIPTables = "0"  #  !!!
 InstallUFW = "0"
 InstallPitivi = "0"
 InstallMousePad = "0"
@@ -261,7 +228,7 @@ if Selected == "1":
     InstallShotWell = "1"
     InstallStacer = "1"
     InstallPyCharm = "0"
-    InstallCaja = "0" #For Open The Trash by The Plank on Debian
+    InstallCaja = "0"  #  For Open The Trash by The Plank on Debian
     InstallCodeBlocks = "1"
     InstallKrita = "0"
     InstallKdenline = "1"
@@ -311,7 +278,7 @@ if Selected == "2":
     InstallKate = "1"
     InstallGpp = "1"
     InstallPyCharm = "0"
-    InstallCaja = "1" #For Open The Trash by The Plank on Debian
+    InstallCaja = "1"  #  For Open The Trash by The Plank on Debian
     InstallCodeBlocks = "1"
     InstallKrita = "1"
     InstallKdenline = "1"
@@ -420,7 +387,7 @@ if Selected == "F":
     Isapt_clean = "1"
     IsFixingDependencies = "1"
     InstallXnViewMP = "1"
-    InstallCaja = "1" #For Open The Trash by The Plank on Debian
+    InstallCaja = "1"  #  For Open The Trash by The Plank on Debian
     InstallKrita = "1"
     InstallKdenline = "1"
     InstallGnomeDisk = "1"
@@ -559,7 +526,6 @@ if EnableTempCaffiene:
         execute_as_root(root_password,"sudo add-apt-repository ppa:caffeine-developers/ppa")
     update_packege(root_password)
     apt_install(root_password,"caffeine")
-    #os.system("caffeine")
     input("Active Caffeine and press any key! ")
 
 #Update
@@ -590,7 +556,6 @@ if Isfix_plank == "1":
     fix_plank(root_password)
 
 #Installs
-
 if Installflatpak == "1":
     flatpak(root_password)
 
@@ -712,7 +677,7 @@ if InstallVBOX == "1":
         apt_install(root_password,"virtualbox")
 
 if InstallNotepadplusplus == "1":
-    what_is_it("Notepad++") #flatpak Package does not exists! /!\
+    what_is_it("Notepad++")
     update_packege(root_password)
     if IsAllowSnap:
         apt_install(root_password,"snapd")
@@ -759,7 +724,7 @@ if InstallGparted == "1":
     apt_install(root_password,"gparted")
 
 if InstallPlayOnLinux == "1":
-    what_is_it("PlayOnLinux") #flatpak Package does not exists! /!\
+    what_is_it("PlayOnLinux")
     if ChooseMethodForDebian:
         execute_as_root(root_password,"sudo dpkg --add-architecture i386")
         apt_install(root_password,"netcat")
@@ -775,7 +740,7 @@ if InstallPlayOnLinux == "1":
         apt_install(root_password,"winetricks")
 
 if InstallLutris == "1":
-    what_is_it("Lutris") #flatpak Package does not exists! /!\
+    what_is_it("Lutris")
     execute_as_root(root_password,"sudo add-apt-repository ppa:lutris-team/lutris --yes")
     update_packege(root_password)
     apt_install(root_password,"lutris")
@@ -808,42 +773,39 @@ if InstallFireFox == "1":
         apt_install(root_password,"firefox")
 
 if InstallChromium == "1":
-    what_is_it("Chromium")  #ungoogled-chromium need flatpak 1.8.2 /!\
+    what_is_it("Chromium")
     apt_install(root_password,"chromium-browser")
 
 if InstallChromium == "2":
-    what_is_it("Chromium [flatpak]")  #ungoogled-chromium need flatpak 1.8.2 /!\
+    what_is_it("Chromium [flatpak]")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub org.chromium.Chromium -y")
 
 if InstallUnGoogledChromium == "1":
-    what_is_it("Ungoogled Chromium")  #ungoogled-chromium need flatpak 1.8.2 /!\
+    what_is_it("Ungoogled Chromium")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.github.Eloston.UngoogledChromium -y")
 
 if InstallEdge == "1":
-    what_is_it("MS Edge") #flatpak Package does not exists! /!\
+    what_is_it("MS Edge")
     execute_as_root(root_password,"curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg")
     execute_as_root(root_password,"sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/")
     execute_as_root(root_password," sudo sh -c 'echo " + '"deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"' + " > /etc/apt/sources.list.d/microsoft-edge-dev.list'")
-    #sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
     execute_as_root(root_password,"sudo rm microsoft.gpg")
     update_packege(root_password)
     apt_install(root_password,"microsoft-edge-dev")
 
 if InstallChrome == "1":
-    what_is_it("Google Chrome") #flatpak Package does not exists! /!\
+    what_is_it("Google Chrome")
     execute_as_root(root_password,"wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb")
     execute_as_root(root_password,"sudo dpkg -i google-chrome-stable_current_amd64.deb")
 
 if InstallTor == "1":
     what_is_it("Tor Browser")
-    # '''letterboxing'''
     apt_install(root_password,"torbrowser-launcher")
 
 if InstallTor == "2":
     what_is_it("Tor Browser [flatpak]")
-    # '''letterboxing'''
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.github.micahflee.torbrowser-launcher -y")
 
@@ -873,7 +835,6 @@ if InstallPeaZip == "1":
 
 if InstallPeaZip == "2":
     what_is_it("PeaZip[flatpak]")
-    #execute_as_root(root_password,"sudo add-apt-repository ppa:alexlarsson/flatpak") # Error. No packages for "jammy" release.
     update_packege(root_password)
     apt_install(root_password,"flatpak")
     execute_as_root(root_password,"flatpak install flathub io.github.peazip.PeaZip -y")
@@ -925,7 +886,6 @@ if InstallLibreOffice == "1":
     if not ChooseMethodForDebian:
         execute_as_root(root_password,"sudo add-apt-repository ppa:libreoffice/ppa --yes")
     update_packege(root_password)
-    #execute_as_root(root_password,"sudo apt-get install libreoffice --yes"))
     apt_install(root_password,"libreoffice")
 
 if InstallBleachBit == "1":
@@ -954,8 +914,6 @@ if InstallTransmission == "1":
 
 if InstallSSR == "1":
     what_is_it("Simple Screen Recorder")
-    #if not ChooseMethodForDebian:
-        #execute_as_root(root_password,"sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder --yes")
     update_packege(root_password)
     apt_install(root_password,"simplescreenrecorder")
 
@@ -972,10 +930,6 @@ if InstallZoom == "1":
 if InstallSteam == "1":
     what_is_it("Steam")
     apt_install(root_password,"steam")
-    # For Debian
-    # deb http://deb.debian.org/debian/ buster main contrib non-free
-    # dpkg --add-architecture i386
-    # Update & Steam
 
 if InstallSteam == "2":
     what_is_it("Steam [flatpak]")
@@ -985,7 +939,6 @@ if InstallSteam == "2":
 if InstallTeams == "1":
     what_is_it("MS Teams")
     execute_as_root(root_password,"curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -")
-    #sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main" > /etc/apt/sources.list.d/teams.list'
     execute_as_root(root_password, "sudo sh -c 'echo " + '"deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"' + " > /etc/apt/sources.list.d/teams.list"+"'")
     update_packege(root_password)
     apt_install(root_password,"teams")
@@ -999,7 +952,6 @@ if InstallGpp == "1":
     what_is_it("G++")
     execute_as_root(root_password,"sudo apt update --yes")
     execute_as_root(root_password,"sudo apt-get install g++ -y")
-    #=================================================
     print("\nHint: Use to build $ g++ <YourCode>.cpp -o <NameYouFutureProgram> ")
     print("Hint: Use to run $ ./<NameYouProgram>\n")
 
@@ -1066,7 +1018,7 @@ if IsFixingDependencies == "1":
     for i in range(3):
         print(str(i)+")")
         execute_as_root(root_password,"sudo apt --fix-broken install --yes")
-        execute_as_root(root_password,"sudo apt install -f -y") # Updating and fixing dependencies
+        execute_as_root(root_password,"sudo apt install -f -y")  #  Updating and fixing dependencies
         execute_as_root(root_password,"sudo apt install dpkg --fix-missing")
         execute_as_root(root_password,"sudo dpkg --configure -a")
 
