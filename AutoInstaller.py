@@ -435,18 +435,19 @@ if is_upgrade == "1":
 	upgrade_packeges(root_password)
 
 # Check
+# You will have to enable both contrib and non-free
 if update_intel_microcodes == "1":
     what_is_it("MicroCode For Intel")
-    apt_install(root_password,"--reinstall intel-microcode")
+    apt_install(root_password,"intel-microcode")
 
 if update_amd64_microcodes == "1":
     what_is_it("MicroCode For Amd64")
-    apt_install(root_password,"--reinstall amd64-microcode")
+    apt_install(root_password,"amd64-microcode")
 
-# TODO Redo
+# TODO Check
 if install_MediaCodes == "1":
     what_is_it("Media Codes")
-    apt_install(root_password,"ubuntu-restricted-extras")
+    apt_install(root_password,"libavcodec-extra")
 
 #Fixes
 if is_fix_gedit == "1":
@@ -497,7 +498,7 @@ if install_Blender == "1":
     apt_install(root_password,"blender")
 elif install_Blender == "2":
     what_is_it("Blender")
-    execute_as_root(root_password,"flatpak install flathub <!!!> -y") # TODO
+    execute_as_root(root_password,"flatpak install flathub org.blender.Blender -y")
 
 if install_SweetHome3D == "1":
     what_is_it("SweetHome3D")
