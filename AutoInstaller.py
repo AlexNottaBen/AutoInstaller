@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+from getpass import getpass
 
 IsAllowSnap = False
 EnableTempCaffiene = False
@@ -31,7 +32,7 @@ Note that whenever you start a command by first letters then use the tricky doub
 
 sudo add-apt-repository ppa:nilarimogard/webupd8
 sudo apt-get update
-sudo apt-get install caffeine-plus       
+sudo apt-get install caffeine-plus
 
 '''
 def DoThis(RootPassword,Command):
@@ -61,13 +62,13 @@ def SnapRefresh(RootPassword):
         SimpleInstall(RootPassword,"snapd")
         os.system('echo %s|sudo -S %s' % (RootPassword, "sudo snap refresh"))
     else:
-        print("\nSnap is Detected!\nIsAllowSnap = False")
+        print("\nSnap is not allowed!\nIsAllowSnap = False")
 
 def FlatPak(RootPassword):
     WhatItIs("FlatPak")
     SimpleInstall(RootPassword,"flatpak")
-    if not ChooseMethodForDebian:
-        DoThis(RootPassword,"sudo add-apt-repository ppa:alexlarsson/flatpak")
+    #if not ChooseMethodForDebian:
+        #DoThis(RootPassword,"sudo add-apt-repository ppa:alexlarsson/flatpak") # Error. No packages for "jammy" release.
     UpdatePackege(RootPassword)
     DoThis(RootPassword,"flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
     #DoThis(RootPassword,"flatpak update") #almost aborted!
@@ -103,7 +104,6 @@ def Logo():
     print("#            AutoInstaller           #")
     print("######################################")
     print("By AlexNottaBen")
-    print("19/06/2022")
 
 def ClearScreen():
     os.system("clear")
@@ -112,7 +112,7 @@ def ClearScreen():
 #Begin
 ClearScreen()
 Logo()
-RootPassword = input("Input Root Password > ")
+RootPassword = getpass("Input Root Password > ")
 ClearScreen()
 Logo()
 
@@ -151,10 +151,12 @@ InstallOpenShot = "0"
 InstallAudacity = "0"
 InstallGrubCustomizer = "0"
 InstallVBOX = "0"
+InstallNotepadqq = "0"
 InstallNotepadplusplus = "0"
 InstallWine = "0"
 InstallPlayOnLinux = "0"
 InstallFireFox = "0"
+InstallLibreWolf = "0"
 InstallThunderBird = "0"
 InstallChromium = "0"
 InstallUnGoogledChromium = "0"
@@ -181,6 +183,7 @@ InstallPidgin = "0"
 InstallTelegram = "0"
 InstallTeams = "0"
 InstallSkype = "0"
+InstallDiscord = "0"
 InstallLutris = "0"
 InstallGpp = "0"
 InstallArduinoIDLE = "0"
@@ -202,6 +205,9 @@ InstallDoubleCmd = "0"
 InstallBaobab = "0"
 ProfPythonDeveloper = "0"
 InstallUnity = "0"
+InstallBlender = "0"
+InstallAtom = "0"
+InstallGnomeSoftware = "0"
 
 print("0 - Custom")
 print("1 - Default (For Debian and Debian-based OS)")
@@ -213,7 +219,7 @@ print('6 - Content Creation')
 print('7 - Only Updating')
 print('8 - Only Basic Fixing and Cleaning')
 print('P1 - All For Python Developer')
-print('P2 - All For Unity Developer')
+print('P2 - All For Godot Developer')
 
 Selected = input("Select > ")
 
@@ -226,45 +232,45 @@ if Selected == "1":
     IsFixPlank = "1"
     InstallVLC = "1"
     InstallGIMP = "1"
-    InstallTimeShift = "1"
+    InstallTimeShift = "0"
     InstallPeaZip = "1"
     InstallVBOX = "1"
     InstallNotepadplusplus = "0"
     InstallWine = "1"
-    InstallPlayOnLinux = "1"
-    InstallFireFox = "0"
-    InstallEdge = "1"
+    InstallPlayOnLinux = "0"
+    InstallLibreWolf = "1"
+    InstallEdge = "0"
     InstallTor = "0"
     InstallVSC = "0"
     InstallUnGoogledChromium = "1"
-    InstallSublimeText = "2"
     InstallLibreOffice = "1"
-    InstallBleachBit = "1"
+    InstallBleachBit = "0"
     InstallGparted = "1"
     InstallQbitTorrent = "1"
     InstallSSR = "1"
     InstallSteam = "1"
-    InstallZoom = "1"
+    InstallZoom = "0"
     InstallTelegram = "2"
     InstallTeams = "1"
-    InstallCaffeine = "1"
+    InstallCaffeine = "0"
     InstallGpp = "1"
     InstallArduinoIDLE = "0"
     InstallPython3IDLE = "0"
     IsCleaner = "1"
     IsFixingDependencies = "1"
     InstallShotWell = "1"
-    InstallStacer = "0"
+    InstallStacer = "1"
     InstallPyCharm = "0"
-    InstallCaja = "1" #For Open The Trash by The Plank on Debian
+    InstallCaja = "0" #For Open The Trash by The Plank on Debian
     InstallCodeBlocks = "1"
-    InstallKrita = "1"
+    InstallKrita = "0"
     InstallKdenline = "1"
     InstallKolourPaint = "1"
     InstallGnomeDisk = "1"
     InstallDoubleCmd = "1"
     InstallBaobab = "1"
-    InstallKolourPaint = "1"
+    InstallAtom = "0"
+    InstallGnomeSoftware = "1"
     ChooseMethodForDebian = True
     ChooseFlatPakMethod = True
 
@@ -283,12 +289,11 @@ if Selected == "2":
     InstallNotepadplusplus = "0"
     InstallWine = "1"
     InstallPlayOnLinux = "1"
-    InstallFireFox = "0"
+    InstallLibreWolf = "1"
     InstallChromium = "0"
     InstallUnGoogledChromium = "1"
     InstallTor = "1"
     InstallVSC = "0"
-    InstallSublimeText = "2"
     InstallLibreOffice = "1"
     InstallBleachBit = "0"
     InstallGparted = "1"
@@ -315,6 +320,8 @@ if Selected == "2":
     InstallDoubleCmd = "1"
     InstallBaobab = "1"
     InstallKolourPaint = "1"
+    InstallAtom = "1"
+    InstallGnomeSoftware = "1"
     ChooseMethodForDebian = False
     ChooseFlatPakMethod = False
 
@@ -330,7 +337,6 @@ if Selected == "3":
     InstallVBOX = "1"
     InstallFireFox = "1"
     InstallVSC = "1"
-    InstallSublimeText = "1"
     InstallLibreOffice = "1"
     InstallBleachBit = "1"
     InstallGparted = "1"
@@ -338,6 +344,7 @@ if Selected == "3":
     InstallSSR = "1"
     InstallZoom = "1"
     InstallTeams = "1"
+    InstallGnomeSoftware = "1"
     IsCleaner = "1"
     IsFixingDependencies = "1"
 
@@ -351,6 +358,7 @@ if Selected == "4":
     InstallWine = "1"
     InstallPlayOnLinux = "1"
     InstallLutris = "1"
+    InstallGnomeSoftware = "1"
     IsCleaner = "1"
     IsFixingDependencies = "1"
 
@@ -420,6 +428,7 @@ if Selected == "F":
     InstallBaobab = "1"
     InstallKolourPaint = "1"
     InstallStacer = "1"
+    InstallGnomeSoftware = "1"
     ChooseMethodForDebian = False
     ChooseFlatPakMethod = False
 
@@ -440,6 +449,7 @@ if Selected == "Y":
     InstallScratch3 = "1"
     InstallVBOX = "1"
     InstallDiscord = "1"
+    InstallGnomeSoftware = "1"
     ChooseMethodForDebian = False
     ChooseFlatPakMethod = False
 
@@ -454,7 +464,8 @@ if Selected == "P1":
 if Selected == "P2":
     IsUpdate = "1"
     IsUpgrade = "1"
-    InstallUnity = "1"
+    InstallGodotEngine = "1"
+    InstallBlender = "2"
 
 if Selected == "0":
     IsUpdate = "1"
@@ -474,7 +485,7 @@ if Selected == "0":
     InstallMyPaint = input("[Open-Source] MyPaint - Raster Graphic Editor (No = 0/Yes = 1): = ")
     InstallKolourPaint = input("[Open-Source] KolourPaint - Raster Graphic Editor (No = 0/Yes = 1): = ")
     InstallInkScape = input("[Open-Source] InkScape - Vector Graphic Editor (No = 0/Yes = 1): = ")
-    Installblender = input("[Open-Source] Blender - 3D Editor (No = 0/Yes = 1): = ")
+    InstallBlender = input("[Open-Source] Blender - 3D Editor (No = 0/Yes = 1/Yes[FlatPak] = 2): = ")
     InstallSweetHome3D = input("[Open-Source] Sweet Home 3D - 3D Home Editor (No = 0/Yes = 1): = ")
     InstallScratch = input("[Open-Source] Scratch - Game Developer Tools (No = 0/Yes = 1): = ")
     InstallScratch3 = input("[Open-Source] Scratch 3 - Game Developer Tools (No = 0/Yes = 1): = ")
@@ -484,7 +495,6 @@ if Selected == "0":
     InstallCajaDrobBox = input("[Addons] Caja DrobBox - Alternative to One Drive (No = 0/Yes = 1): = ")
     InstallTimeShift = input("[Open-Source] TimeShift - Alternative to Time Machine (No = 0/Yes = 1): = ")
     InstallPeaZip = input("[Open-Source] PeaZip - Alternative to WinRar (No = 0/Yes = 1/Yes[FlatPak] = 2): = ")
-    #FlatpakInstallPeaZip = input("[Open-Source] PeaZip(FlatPak) - Alternative to WinRar (No = 0/Yes = 1): = ")   
     InstallKdenline = input("[Open-Source] Kdenline - Open KDE Video Editor (No = 0/Yes = 1): = ")
     InstallOpenShot = input("[Open-Source] OpenShot - Open Video Editor (No = 0/Yes = 1): = ")
     InstallPitivi = input("[Open-Source] Pitivi - Open Video Editor (No = 0/Yes = 1): = ")
@@ -497,6 +507,7 @@ if Selected == "0":
     InstallPlayOnLinux = input("[Open-Source] PlayOnLinux - For Run Windows Apps (No = 0/Yes = 1): = ")
     InstallLutris = input("[Open-Source] Lutris - For Run Windows Games (No = 0/Yes = 1): = ")
     InstallThunderBird = input("[Open-Source] ThunderBird - Open Mail Client(No = 0/Yes = 1): = ")
+    InstallLibreWolf = input("[Open-Source] LibreWolf - Open Web-broweser(No = 0/Yes = 1): = ")
     InstallFireFox = input("[Open-Source] FireFox - Open Web-broweser(No = 0/Yes = 1): = ")
     InstallChromium = input("[Open-Source] Chromium - Open Web-broweser(No = 0/Yes = 1): = ")
     InstallUnGoogledChromium = input("[Open-Source] Ungoogled Chromium - Open Web-broweser(No = 0/Yes = 1): = ")
@@ -507,7 +518,7 @@ if Selected == "0":
     InstallXnViewMP = input("[Proprietary Freeware] XnView MP - Image Viewer (No = 0/Yes = 1): = ")
     InstallKate = input("[Open-Source] Kate - KDE Text Editor, Alternative to Sublime Text(No = 0/Yes = 1): = ")
     InstallMousePad = input("[Open-Source] MousePad - XFCE Text Editor (No = 0/Yes = 1): = ")
-    InstallPyCharm = input("[Open-Source] PyCharm Community - Community IDE Editor (No = 0/Yes = 1/Yes = 2[Flatpak]): = ")   
+    InstallPyCharm = input("[Open-Source] PyCharm Community - Community IDE Editor (No = 0/Yes = 1/Yes = 2[Flatpak]): = ")
     InstallSublimeText  = input("[Proprietary] Sublime Text - Text Editor (No = 0/Yes = 1): = ")
     InstallVSC = input("[Proprietary] Visual Studio Code - Development Environment (No = 0/Yes = 1): = ")
     InstallLibreOffice = input("[Open-Source] Libre Office - OpenSource Office (No = 0/Yes = 1): = ")
@@ -527,9 +538,10 @@ if Selected == "0":
     InstallTeams = input("[Proprietary Software] Microsoft Teams - For Study (No = 0/Yes = 1): = ")
     InstallDiscord = input("[Proprietary Software] Discord - Modern Apps For Chating, Vidio Rings (No = 0/Yes = 1): = ")
     InstallSkype = input("[Proprietary Software] Microsoft Skype - For Vidio Rings (No = 0/Yes = 1): = ")
-    InstallGpp = input("[Maybe,Open-Source] G++ - C++ Compiler (No = 0/Yes = 1): = ")
+    InstallGpp = input("[Open-Source] G++ - C++ Compiler (No = 0/Yes = 1): = ")
     InstallArduinoIDLE = input("[Open-Source] Arduino IDLE - IDLE for Arduino (No = 0/Yes = 1): = ")
-    InstallPython3IDLE = input("[Maybe,Open-Source] Python3 IDLE - IDLE for Python (No = 0/Yes = 1): = ")
+    InstallPython3IDLE = input("[Open-Source] Python3 IDLE - IDLE for Python (No = 0/Yes = 1): = ")
+    InstallAtom = input("[Open-Source] Atom - IDLE (for Python) (No = 0/Yes = 1): = ")
     InstallClamAV = input("[Open-Source] ClamAV - AntiVirus Program(No = 0/Yes = 1): = ")
     InstallGodotEngine = input("[Open-Source] Godot Engine - Game Engine(No = 0/Yes = 1[Flatpak]): = ")
     InstallUnity = input("[Proprietary Software] Unity Engine - Game Engine(No = 0/Yes = 1): = ")
@@ -585,13 +597,13 @@ if InstallFlatPak == "1":
 if InstallVLC == "1":
     WhatItIs("VLC")
     SimpleInstall(RootPassword,"vlc")
-   
+
 if InstallVLC == "1":
     WhatItIs("MPV")
     SimpleInstall(RootPassword,"mpv")
 
     '''
-	To install the latest VLC media player you might want to consider the VLC installation 
+	To install the latest VLC media player you might want to consider the VLC installation
 	from a 3rd-party PPA repository. To do so first step is to include VLC PPA repository:
 
 	$ sudo add-apt-repository ppa:videolan/master-daily
@@ -627,9 +639,12 @@ if InstallInkScape == "1":
     WhatItIs("InkScape")
     SimpleInstall(RootPassword,"inkscape")
 
-if Installblender == "1":
+if InstallBlender == "1":
     WhatItIs("Blender")
     SimpleInstall(RootPassword,"blender")
+elif InstallBlender == "2":
+    WhatItIs("Blender")
+    DoThis(RootPassword,"flatpak install flathub <!!!> -y") #ToDo
 
 if InstallSweetHome3D == "1":
     WhatItIs("SweetHome3D")
@@ -781,6 +796,10 @@ if InstallThunderBird == "1":
     WhatItIs("ThunderBird")
     SimpleInstall(RootPassword,"thunderbird")
 
+if InstallLibreWolf == "1":
+    WhatItIs("LibreWolf")
+    DoThis(RootPassword,'distro=$(if echo " bullseye focal impish jammy uma una " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi) && echo "deb [arch=amd64] http://deb.librewolf.net $distro main" | sudo tee /etc/apt/sources.list.d/librewolf.list && sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg && sudo apt update -y && sudo apt install librewolf -y')
+
 if InstallFireFox == "1":
     WhatItIs("FireFox")
     if ChooseMethodForDebian:
@@ -814,7 +833,7 @@ if InstallEdge == "1":
 
 if InstallChrome == "1":
     WhatItIs("Google Chrome") #FlatPak Package does not exists! /!\
-    DoThis(RootPassword,"wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb") 
+    DoThis(RootPassword,"wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb")
     DoThis(RootPassword,"sudo dpkg -i google-chrome-stable_current_amd64.deb")
 
 if InstallTor == "1":
@@ -826,12 +845,12 @@ if InstallTor == "2":
     WhatItIs("Tor Browser [FlatPak]")
     # '''letterboxing'''
     FlatPak(RootPassword)
-    DoThis(RootPassword,"flatpak install flathub com.github.micahflee.torbrowser-launcher -y") 
-    
+    DoThis(RootPassword,"flatpak install flathub com.github.micahflee.torbrowser-launcher -y")
+
 if InstallShotWell == "1":
     WhatItIs("ShotWell")
     SimpleInstall(RootPassword,"shotwell")
-    
+
 if InstallXnViewMP == "1":
     WhatItIs("XnView MP")
     DoThis(RootPassword,"wget https://download.xnview.com/XnViewMP-linux-x64.deb")
@@ -851,10 +870,10 @@ if InstallPeaZip == "1":
     SimpleInstall(RootPassword,"libatk1.0-0:i386 libc6:i386 libcairo2:i386 libgdk-pixbuf2.0-0:i386 libglib2.0-0:i386 libgtk2.0-0:i386 libpango1.0-0:i386 libx11-6:i386 libcanberra-gtk-module:i386")
     SimpleInstall(RootPassword,"./peazip_7.8.0.LINUX.x86_64.GTK2.deb")
     DoThis(RootPassword,"sudo rm peazip_7.8.0.LINUX.x86_64.GTK2.deb")
-	
+
 if InstallPeaZip == "2":
     WhatItIs("PeaZip[FlatPak]")
-    DoThis(RootPassword,"sudo add-apt-repository ppa:alexlarsson/flatpak")
+    #DoThis(RootPassword,"sudo add-apt-repository ppa:alexlarsson/flatpak") # Error. No packages for "jammy" release.
     UpdatePackege(RootPassword)
     SimpleInstall(RootPassword,"flatpak")
     DoThis(RootPassword,"flatpak install flathub io.github.peazip.PeaZip -y")
@@ -935,8 +954,8 @@ if InstallTransmission == "1":
 
 if InstallSSR == "1":
     WhatItIs("Simple Screen Recorder")
-    if not ChooseMethodForDebian:
-        DoThis(RootPassword,"sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder --yes")
+    #if not ChooseMethodForDebian:
+        #DoThis(RootPassword,"sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder --yes")
     UpdatePackege(RootPassword)
     SimpleInstall(RootPassword,"simplescreenrecorder")
 
@@ -954,7 +973,7 @@ if InstallSteam == "1":
     WhatItIs("Steam")
     SimpleInstall(RootPassword,"steam")
     # For Debian
-    # deb http://deb.debian.org/debian/ buster main contrib non-free 
+    # deb http://deb.debian.org/debian/ buster main contrib non-free
     # dpkg --add-architecture i386
     # Update & Steam
 
@@ -991,6 +1010,16 @@ if InstallArduinoIDLE == "1":
 if InstallPython3IDLE == "1":
     WhatItIs("Python IDLE")
     DoThis(RootPassword,"sudo apt-get install idle3 --yes")
+
+if InstallAtom == "1":
+    WhatItIs("Atom")
+    DoThis(RootPassword,"flatpak install flathub io.atom.Atom -y")
+
+if InstallGnomeSoftware == "1":
+    WhatItIs("Gnome Software")
+    DoThis(RootPassword,"snap remove gnome-software")
+    DoThis(RootPassword,"sudo snap remove gnome-software")
+    SimpleInstall(RootPassword,"gnome-software gnome-software-plugin-flatpak")
 
 if InstallUnity == "1":
     WhatItIs("Unity Hub")
@@ -1040,7 +1069,7 @@ if IsFixingDependencies == "1":
         DoThis(RootPassword,"sudo apt install -f -y") # Updating and fixing dependencies
         DoThis(RootPassword,"sudo apt install dpkg --fix-missing")
         DoThis(RootPassword,"sudo dpkg --configure -a")
-    
+
 if IsCleaner == "1":
     Cleaner(RootPassword)
 
