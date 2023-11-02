@@ -4,7 +4,6 @@ import os
 import sys
 from getpass import getpass
 
-IsAllowSnap = False
 EnableTempCaffiene = False
 
 
@@ -27,30 +26,15 @@ def upgrade_packeges(root_password):
 def apt_install(root_password,program_name):
     os.system('echo %s|sudo -S %s' % (root_password, "sudo apt install " + program_name + " --yes"))
 
-def SnapRefresh(root_password):
-    if IsAllowSnap:
-        print("\n==================== Snap Refresh ====================")
-        apt_install(root_password,"snap")
-        apt_install(root_password,"snapd")
-        os.system('echo %s|sudo -S %s' % (root_password, "sudo snap refresh"))
-    else:
-        print("\nSnap is not allowed!\nIsAllowSnap = False")
-
 def flatpak(root_password):
     what_is_it("flatpak")
     apt_install(root_password,"flatpak")
     update_packege(root_password)
     execute_as_root(root_password,"flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
 
-def Snapapt_install(root_password,program_name):
-    if IsAllowSnap:
-        os.system('echo %s|sudo -S %s' % (root_password, "sudo snap install " + program_name))
-    else:
-        print("Snap is Detected!\nIsAllowSnap = False")
-
 def fix_plank(root_password):
     print("==================== Fix Plank ====================")
-    os.system('echo %s|sudo -S %s' % (root_password,"gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ show-dock-item false"))#remove anchor icon in Plank
+    os.system('echo %s|sudo -S %s' % (root_password,"gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ show-dock-item false")) #  Remove anchor icon in Plank
     print("Done!")
 
 def fix_gedit(root_password):
@@ -76,7 +60,7 @@ def logo():
 def clear():
     os.system("clear")
 
-#Begin
+# Begin
 clear()
 logo()
 root_password = getpass("Input Root Password > ")
@@ -90,7 +74,6 @@ Isapt_clean = "0"
 IsFixingDependencies = "0"
 IsUpdate = "0"
 IsUpgrade = "0"
-IsSnapRefresh = "0"
 UpdateMicroCodeIntel = "0"
 UpdateMicroCodeAmd64 = "0"
 Isfix_gedit = "0"
@@ -195,7 +178,6 @@ if Selected == "1":
     Installflatpak = "1"
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
     Isfix_plank = "1"
     InstallVLC = "1"
     InstallGIMP = "1"
@@ -246,7 +228,6 @@ if Selected == "2":
     Installflatpak = "1"
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
     Isfix_plank = "1"
     InstallVLC = "1"
     InstallGIMP = "1"
@@ -296,7 +277,6 @@ if Selected == "3":
     Installflatpak = "0"
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
     Isfix_plank = "1"
     InstallVLC = "1"
     InstallGIMP = "1"
@@ -319,7 +299,6 @@ if Selected == "4":
     Installflatpak = "0"
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
     InstallSSR = "1"
     InstallSteam = "1"
     InstallWine = "1"
@@ -342,7 +321,6 @@ if Selected == "6":
     Installflatpak = "0"
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
     InstallGIMP = "1"
     InstallVLC = "1"
     InstallKdenline = "1"
@@ -353,13 +331,11 @@ if Selected == "7":
     Installflatpak = "0"
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
 
 if Selected == "8":
     Installflatpak = "0"
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
     Isapt_clean = "1"
     IsFixingDependencies = "1"
 
@@ -368,7 +344,6 @@ if Selected == "F":
     Installflatpak = "1"
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
     InstallVLC = "1"
     InstallGIMP = "1"
     InstallPeaZip = "1"
@@ -437,7 +412,6 @@ if Selected == "P2":
 if Selected == "0":
     IsUpdate = "1"
     IsUpgrade = "1"
-    IsSnapRefresh = "1"
     print("==================== Set Basic Setting ====================")
     UpdateMicroCodeIntel = input("Update MicroCode For Intel (No = 0/Yes = 1): = ")
     UpdateMicroCodeAmd64 = input("Update MicroCode For Amd64 (No = 0/Yes = 1): = ")
@@ -501,7 +475,7 @@ if Selected == "0":
     InstallZoom = input("[Proprietary Freemium] Zoom - For Vidio Rings (No = 0/Yes = 1): = ")
     InstallViber = input("[Proprietary Shareware] Viber - For Chating (No = 0/Yes = 1): = ")
     InstallPidgin = input("[Open-Source] Pidgin - For Chating (No = 0/Yes = 1): = ")
-    InstallTelegram = input("[Open-Source Client/Proprietary Server] Telegram - For Chating (No = 0/Yes[Snap] = 1/Yes[flatpak] = 2): = ")
+    InstallTelegram = input("[Open-Source Client/Proprietary Server] Telegram - For Chating (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
     InstallTeams = input("[Proprietary Software] Microsoft Teams - For Study (No = 0/Yes = 1): = ")
     InstallDiscord = input("[Proprietary Software] Discord - Modern Apps For Chating, Vidio Rings (No = 0/Yes = 1): = ")
     InstallSkype = input("[Proprietary Software] Microsoft Skype - For Vidio Rings (No = 0/Yes = 1): = ")
@@ -533,8 +507,6 @@ if IsUpdate == "1":
 	update_packege(root_password)
 if IsUpgrade == "1":
 	upgrade_packeges(root_password)
-if IsSnapRefresh == "1":
-	SnapRefresh(root_password)
 
 if UpdateMicroCodeIntel == "1":
     what_is_it("MicroCode For Intel")
@@ -679,11 +651,7 @@ if InstallVBOX == "1":
 if InstallNotepadplusplus == "1":
     what_is_it("Notepad++")
     update_packege(root_password)
-    if IsAllowSnap:
-        apt_install(root_password,"snapd")
-        Snapapt_install(root_password,"notepad-plus-plus")
-    else:
-        print("Snap is Detected!\nIsAllowSnap = False")
+    # TODO !!!
 
 if InstallNotepadqq == "1":
     what_is_it("Notepadqq")
@@ -699,12 +667,8 @@ if InstallTelegram == "2":
     execute_as_root(root_password,"flatpak install flathub org.telegram.desktop -y")
 
 if InstallTelegram == "1":
-    what_is_it("Telegram [Snap]")
-    if IsAllowSnap:
-        execute_as_root(root_password,"snap find | grep telegram")
-        Snapapt_install(root_password,"telegram-desktop")
-    else:
-        print("Snap is Detected!\nIsAllowSnap = False")
+    what_is_it("Telegram")
+    # TODO !!!
 
 if InstallViber == "1":
     what_is_it("Viber")
@@ -854,7 +818,7 @@ if InstallVSC == "1":
 
 if InstallPyCharm == "1":
     what_is_it("PyCharm")
-    Snapapt_install(root_password,"pycharm-community --classic")
+    # TODO !!!
 
 if InstallPyCharm == "2":
     what_is_it("PyCharm [flatpak]")
@@ -869,11 +833,10 @@ if InstallMousePad  == "1":
     what_is_it("MousePad")
     apt_install(root_password,"mousepad")
 
-if InstallSublimeText == "1":
-    what_is_it("Sublime Text [Snap]")
+if InstallSublimeText == "1": # Delete this!
+    what_is_it("Sublime Text")
     execute_as_root(root_password,"wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -")
     execute_as_root(root_password,'sudo apt-add-repository "deb https://download.sublimetext.com/ apt/stable/')
-    Snapapt_install(root_password,"sublime-text --classic")
     execute_as_root(root_password,"sudo apt install libgtk2.0-0")
 
 if InstallSublimeText == "2":
@@ -969,7 +932,6 @@ if InstallAtom == "1":
 
 if InstallGnomeSoftware == "1":
     what_is_it("Gnome Software")
-    execute_as_root(root_password,"snap remove gnome-software")
     execute_as_root(root_password,"sudo snap remove gnome-software")
     apt_install(root_password,"gnome-software gnome-software-plugin-flatpak")
 
