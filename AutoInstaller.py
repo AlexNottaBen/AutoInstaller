@@ -9,7 +9,7 @@ def execute_as_root(root_password="live", command="echo"):
     execute("echo %s|sudo -S %s" % (root_password, command))
 
 
-def what_is_it(program_name=""):
+def what_is_it(program_name="vim"):
     print("\n==================== Install " + program_name + " ====================")
 
 
@@ -23,11 +23,15 @@ def upgrade_packeges(root_password="live"):
     execute("echo %s|sudo -S %s" % (root_password, "sudo apt upgrade --yes"))
 
 
-def apt_install(root_password="live", program_name=""):
+def apt_install(root_password="live", program_name="vim"):
     execute(
         "echo %s|sudo -S %s"
         % (root_password, "sudo apt install " + program_name + " --yes")
     )
+
+
+def flatpak_install(program_domain="org.example.Example"):
+    execute("flatpak install flathub " + program_domain + " -y")
 
 
 def flatpak(root_password="live"):
@@ -41,6 +45,7 @@ def flatpak(root_password="live"):
 
 
 def fix_plank(root_password):
+    '''  Remove anchor icon in Plank '''
     print("==================== Fix Plank ====================")
     execute(
         "echo %s|sudo -S %s"
@@ -48,7 +53,7 @@ def fix_plank(root_password):
             root_password,
             "gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ show-dock-item false",
         )
-    )  #  Remove anchor icon in Plank
+    )
     print("Done!")
 
 
@@ -67,7 +72,7 @@ def fix_gedit(root_password):
     print("Done!")
 
 
-def apt_clean(root_password):
+def apt_clean(root_password="live"):
     print("==================== Cleaning ====================")
     print("> autoremove")
     execute("echo %s|sudo -S %s" % (root_password, "sudo apt autoremove --yes"))
@@ -92,6 +97,8 @@ def clear():
 clear()
 logo()
 root_password = input_password("Input Root Password > ")
+if not root_password:
+    root_password = "live"
 clear()
 logo()
 
@@ -153,7 +160,7 @@ install_Gpp = "0"
 install_ArduinoIDLE = "0"
 install_Python3IDLE = "0"
 install_ClamAV = "0"
-install_IPTables = "0"  #  !!!
+install_IPTables = "0"
 install_UFW = "0"
 install_Pitivi = "0"
 install_MousePad = "0"
@@ -605,7 +612,7 @@ if install_Krita == "1":
     apt_install(root_password, "krita")
 elif install_Krita == "2":
     what_is_it("Krita [flatpak]")
-    execute("flatpak install flathub org.kde.krita -y")
+    flatpak_install("org.kde.krita")
 
 if install_MyPaint == "1":
     what_is_it("MyPaint")
@@ -625,7 +632,7 @@ if install_Blender == "1":
     apt_install(root_password, "blender")
 elif install_Blender == "2":
     what_is_it("Blender [Flatpak]")
-    execute("flatpak install flathub org.blender.Blender -y")
+    flatpak_install("org.blender.Blender")
 
 if install_SweetHome3D == "1":
     what_is_it("SweetHome3D")
@@ -639,7 +646,7 @@ if install_Scratch == "1":
 if install_Scratch3 == "1":
     what_is_it("Scratch 3 [Flatpak]")
     flatpak(root_password)
-    execute("flatpak install flathub edu.mit.Scratch -y")
+    flatpak_install("edu.mit.Scratch")
 
 if install_FileZilla == "1":
     what_is_it("FileZilla")
@@ -693,14 +700,10 @@ if install_Pidgin == "1":
     what_is_it("Pidgin")
     apt_install(root_password, "pidgin")
 
-if install_Telegram == "2":
-    what_is_it("Telegram [flatpak]")
-    flatpak(root_password)
-    execute_as_root(root_password, "flatpak install flathub org.telegram.desktop -y")
-
 if install_Telegram == "1":
-    what_is_it("Telegram")
-    # TODO !!!
+    what_is_it("Telegram [flatpak only]")
+    flatpak(root_password)
+    flatpak_install("org.telegram.desktop")
 
 if install_Wine == "1":
     what_is_it("Wine")
@@ -769,14 +772,12 @@ if install_Chromium == "1":
 elif install_Chromium == "2":
     what_is_it("Chromium [Flatpak]")
     flatpak(root_password)
-    execute("flatpak install flathub org.chromium.Chromium -y")
+    flatpak_install("org.chromium.Chromium")
 
 if install_UnGoogledChromium == "1":
     what_is_it("Ungoogled Chromium [Flatpak]")
     flatpak(root_password)
-    execute_as_root(
-        root_password, "flatpak install flathub com.github.Eloston.UngoogledChromium -y"
-    )
+    flatpak_install("com.github.Eloston.UngoogledChromium")
 
 if install_Tor == "1":
     what_is_it("Tor Browser")
@@ -784,7 +785,7 @@ if install_Tor == "1":
 elif install_Tor == "2":
     what_is_it("Tor Browser [flatpak]")
     flatpak(root_password)
-    execute("flatpak install flathub com.github.micahflee.torbrowser-launcher -y")
+    flatpak_install("com.github.micahflee.torbrowser-launcher")
 
 if install_ShotWell == "1":
     what_is_it("ShotWell")
@@ -809,7 +810,7 @@ elif install_PeaZip == "2":
     what_is_it("PeaZip[flatpak]")
     update_packege(root_password)
     apt_install(root_password, "flatpak")
-    execute("flatpak install flathub io.github.peazip.PeaZip -y")
+    flatpak_install("io.github.peazip.PeaZip")
 
 # TODO Check
 if install_VSC == "1":
@@ -821,21 +822,19 @@ if install_VSC == "1":
 elif install_VSC == "1":
     what_is_it("VScodium [flatpak]")
     flatpak(root_password)
-    execute(root_password, "flatpak install flathub com.vscodium.codium -y")
+    flatpak_install("com.vscodium.codium")
 
 # TODO Check
 if install_PyCharm == "1":
-    what_is_it("PyCharm")
+    what_is_it("PyCharm Community")
     execute(
         "wget -nc https://download-cdn.jetbrains.com/python/pycharm-community-2023.2.3.tar.gz"
     )
     execute("tar xvf pycharm-community-2023.2.3.tar.gz -C ~/pycharm-community")
 elif install_PyCharm == "2":
-    what_is_it("PyCharm [flatpak]")
+    what_is_it("PyCharm Community [flatpak]")
     flatpak(root_password)
-    execute_as_root(
-        root_password, "flatpak install flathub com.jetbrains.PyCharm-Community -y"
-    )
+    flatpak_install("com.jetbrains.PyCharm-Community")
 
 if install_Kate == "1":
     what_is_it("Kate")
@@ -893,20 +892,17 @@ if install_Steam == "1":
 elif install_Steam == "2":
     what_is_it("Steam [flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password, "flatpak install flathub com.valvesoftware.Steam -y")
+    flatpak_install("com.valvesoftware.Steam")
 
 # TODO Check
 if install_Teams == "1":
     what_is_it("MS Teams [Unofficial flatpak]")
     flatpak(root_password)
-    execute_as_root(
-        root_password,
-        "flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y",
-    )
+    flatpak_install("com.github.IsmaelMartinez.teams_for_linux")
 elif install_Teams == "2":
     what_is_it("MS Teams [flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password, "flatpak install flathub com.microsoft.Teams -y")
+    flatpak_install("com.microsoft.Teams")
 
 if install_Gpp == "1":
     what_is_it("G++")
@@ -953,7 +949,7 @@ if install_CodeBlocks == "1":
 elif install_CodeBlocks == "2":
     what_is_it("Code::Blocks via flatpak")
     flatpak(root_password)
-    execute_as_root(root_password, "flatpak install flathub org.codeblocks.codeblocks")
+    flatpak_install("org.codeblocks.codeblocks")
 
 if install_GodotEngine == "1":
     what_is_it("Godot 3")
@@ -961,7 +957,7 @@ if install_GodotEngine == "1":
 elif install_GodotEngine == "2":
     what_is_it("Godot 3 [Flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password, "flatpak install flathub org.godotengine.Godot3 -y")
+    flatpak_install("org.godotengine.Godot3")
 
 if install_IPTables == "1":
     what_is_it("IPTables")
