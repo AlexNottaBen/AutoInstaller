@@ -123,6 +123,7 @@ install_blender = "0"
 install_SweetHome3D = "0"
 install_Scratch = "0"
 install_Scratch3 = "0"
+install_TurboWarp = "0"
 install_FileZilla = "0"
 install_Caja = "0"
 install_TimeShift = "0"
@@ -407,6 +408,9 @@ if Selected == "0":
     install_Scratch3 = input(
         "[Open-Source] Scratch 3 - Game Developer Tools (No = 0/Yes[Flatpak only] = 1): = "
     )
+    install_TurboWarp = input(
+        "[Open-Source] TurboWarp - Improved Scratch 3 (No = 0/Yes[Flatpak only] = 1): = "
+    )
     install_FileZilla = input(
         "[Open-Source] FileZilla - FTP Client (No = 0/Yes = 1): = "
     )
@@ -636,7 +640,6 @@ if install_SweetHome3D == "1":
     what_is_it("SweetHome3D")
     apt_install(root_password, "sweethome3d")
 
-# TODO Add Turbowarp
 if install_Scratch == "1":
     what_is_it("Scratch")
     apt_install(root_password, "scratch")
@@ -644,6 +647,10 @@ if install_Scratch == "1":
 if install_Scratch3 == "1":
     what_is_it("Scratch 3 [Flatpak only]")
     flatpak_install("edu.mit.Scratch")
+
+if install_TurboWarp == "1":
+    what_is_it("TurboWarp [Flatpak only]")
+    flatpak_install("org.turbowarp.TurboWarp")
 
 if install_FileZilla == "1":
     what_is_it("FileZilla")
