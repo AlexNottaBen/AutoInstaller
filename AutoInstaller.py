@@ -192,6 +192,7 @@ Selected = input("Select > ")
 
 if Selected == "1" or Selected == "2":
     update_amd64_microcodes = "1"
+    install_MediaCodes = "1"
     install_flatpak = "1"
     is_update = "1"
     is_upgrade = "1"
@@ -372,7 +373,7 @@ if Selected == "0":
         "[Open-Source] Flatpak - System for collecting self-sufficient packages (No = 0/Yes = 1): = "
     )
     install_VLC = input(
-        "[Open-Source] VLC - MediaPlayer (No = 0/Yes = 1): = "
+        "[Open-Source] VLC - MediaPlayer (No = 0/Yes = 1/Yes[flatpak] = 2): = "
     )
     install_MPV = input(
         "[Open-Source] MPV - MediaPlayer (No = 0/Yes = 1): = "
@@ -587,6 +588,9 @@ if install_flatpak == "1":
 if install_VLC == "1":
     what_is_it("VLC")
     apt_install(root_password, "vlc")
+elif install_VLC == "2":
+    what_is_it("VLC [flatpak]")
+    flatpak_install("org.videolan.VLC")
 
 if install_MPV == "1":
     what_is_it("MPV")
