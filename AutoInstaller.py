@@ -5,47 +5,77 @@ from os import system as execute
 from getpass import getpass as input_password
 
 
-def execute_as_root(root_password,command):
-    execute('echo %s|sudo -S %s' % (root_password,command))
+def execute_as_root(root_password, command):
+    execute("echo %s|sudo -S %s" % (root_password, command))
+
 
 def what_is_it(program_name):
     print("\n==================== Install " + program_name + " ====================")
 
+
 def update_packege(root_password):
     print("\n==================== Update ====================")
-    execute('echo %s|sudo -S %s' % (root_password, "sudo apt update"))
+    execute("echo %s|sudo -S %s" % (root_password, "sudo apt update"))
+
 
 def upgrade_packeges(root_password):
     print("\n==================== Upgrade ====================")
-    execute('echo %s|sudo -S %s' % (root_password, "sudo apt upgrade --yes"))
+    execute("echo %s|sudo -S %s" % (root_password, "sudo apt upgrade --yes"))
 
-def apt_install(root_password,program_name):
-    execute('echo %s|sudo -S %s' % (root_password, "sudo apt install " + program_name + " --yes"))
+
+def apt_install(root_password, program_name):
+    execute(
+        "echo %s|sudo -S %s"
+        % (root_password, "sudo apt install " + program_name + " --yes")
+    )
+
 
 def flatpak(root_password):
     what_is_it("flatpak")
-    apt_install(root_password,"flatpak")
+    apt_install(root_password, "flatpak")
     update_packege(root_password)
-    execute_as_root(root_password,"flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo")
+    execute_as_root(
+        root_password,
+        "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
+    )
+
 
 def fix_plank(root_password):
     print("==================== Fix Plank ====================")
-    execute('echo %s|sudo -S %s' % (root_password,"gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ show-dock-item false")) #  Remove anchor icon in Plank
+    execute(
+        "echo %s|sudo -S %s"
+        % (
+            root_password,
+            "gsettings set net.launchpad.plank.dock.settings:/net/launchpad/plank/docks/dock1/ show-dock-item false",
+        )
+    )  #  Remove anchor icon in Plank
     print("Done!")
+
 
 def fix_gedit(root_password):
     print("==================== Fix Gedit ====================")
-    execute('echo %s|sudo -S %s' % (root_password,'gsettings set org.gnome.gedit.preferences.encodings candidate-encodings' + '"' + "['UTF-8', 'WINDOWS-1251', 'KOI8-R', 'CURRENT', 'ISO-8859-15', 'UTF-16']" + '"'))
+    execute(
+        "echo %s|sudo -S %s"
+        % (
+            root_password,
+            "gsettings set org.gnome.gedit.preferences.encodings candidate-encodings"
+            + '"'
+            + "['UTF-8', 'WINDOWS-1251', 'KOI8-R', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+            + '"',
+        )
+    )
     print("Done!")
+
 
 def apt_clean(root_password):
     print("==================== Cleaning ====================")
     print("> autoremove")
-    execute('echo %s|sudo -S %s' % (root_password, "sudo apt autoremove --yes"))
+    execute("echo %s|sudo -S %s" % (root_password, "sudo apt autoremove --yes"))
     print("> autoclean")
-    execute('echo %s|sudo -S %s' % (root_password, "sudo apt autoclean --yes"))
+    execute("echo %s|sudo -S %s" % (root_password, "sudo apt autoclean --yes"))
     print("> clean")
-    execute('echo %s|sudo -S %s' % (root_password, "sudo apt clean --yes"))
+    execute("echo %s|sudo -S %s" % (root_password, "sudo apt clean --yes"))
+
 
 def logo():
     print("######################################")
@@ -53,8 +83,10 @@ def logo():
     print("######################################")
     print("By AlexNottaBen")
 
+
 def clear():
     execute("clear")
+
 
 # Begin
 clear()
@@ -125,7 +157,7 @@ install_IPTables = "0"  #  !!!
 install_UFW = "0"
 install_Pitivi = "0"
 install_MousePad = "0"
-install_Kate  = "0"
+install_Kate = "0"
 install_PyCharm = "0"
 install_GodotEngine = "0"
 install_CodeBlocks = "0"
@@ -143,11 +175,11 @@ print("2 - Default (For Ubuntu and Ubuntu-based OS)")
 print("3 - Education")
 print("4 - Entertaiments")
 print('5 - "Fast" MS Teams')
-print('6 - Content Creation')
-print('7 - Only Updating')
-print('8 - Only Basic Fixing and Cleaning')
-print('P1 - All For Python Developer')
-print('P2 - All For Godot Developer')
+print("6 - Content Creation")
+print("7 - Only Updating")
+print("8 - Only Basic Fixing and Cleaning")
+print("P1 - All For Python Developer")
+print("P2 - All For Godot Developer")
 
 Selected = input("Select > ")
 
@@ -356,149 +388,253 @@ if Selected == "0":
     update_intel_microcodes = input("Update MicroCode For Intel (No = 0/Yes = 1): = ")
     update_amd64_microcodes = input("Update MicroCode For Amd64 (No = 0/Yes = 1): = ")
     install_MediaCodes = input("Install Media Codes (No = 0/Yes = 1): = ")
-    is_fix_gedit = input("Use this If Cyrillic is not displayed in the Gedit text editor! (No = 0/Yes = 1): = ")
+    is_fix_gedit = input(
+        "Use this If Cyrillic is not displayed in the Gedit text editor! (No = 0/Yes = 1): = "
+    )
     is_fix_plank = input("Remove anchor icon in Plank (No = 0/Yes = 1): = ")
     print("==================== Install Programs ====================")
-    install_flatpak = input("[Open-Source] Flatpak - System for collecting self-sufficient packages (No = 0/Yes = 1): = ")
+    install_flatpak = input(
+        "[Open-Source] Flatpak - System for collecting self-sufficient packages (No = 0/Yes = 1): = "
+    )
     install_VLC = input("[Open-Source] VLC - MediaPlayer (No = 0/Yes = 1): = ")
-    install_GIMP = input("[Open-Source] GIMP - Raster Graphic Editor (No = 0/Yes = 1): = ")
-    install_Krita = input("[Open-Source] Krita - Raster Graphic Editor (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
-    install_MyPaint = input("[Open-Source] MyPaint - Raster Graphic Editor (No = 0/Yes = 1): = ")
-    install_KolourPaint = input("[Open-Source] KolourPaint - Raster Graphic Editor (No = 0/Yes = 1): = ")
-    install_InkScape = input("[Open-Source] InkScape - Vector Graphic Editor (No = 0/Yes = 1): = ")
-    install_Blender = input("[Open-Source] Blender - 3D Editor (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
-    install_SweetHome3D = input("[Open-Source] Sweet Home 3D - 3D Home Editor (No = 0/Yes = 1): = ")
-    install_Scratch = input("[Open-Source] Scratch - Game Developer Tools (No = 0/Yes = 1): = ")
-    install_Scratch3 = input("[Open-Source] Scratch 3 - Game Developer Tools (No = 0/Yes = 1): = ")
-    install_FileZilla = input("[Open-Source] FileZilla - FTP Client (No = 0/Yes = 1): = ")
-    install_Caja = input("[Open-Source] Caja - The File Manager of MATE (No = 0/Yes = 1): = ")
-    install_TimeShift = input("[Open-Source] TimeShift - Alternative to Time Machine (No = 0/Yes = 1): = ")
-    install_PeaZip = input("[Open-Source] PeaZip - Alternative to WinRar (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
-    install_Kdenline = input("[Open-Source] Kdenline - Open KDE Video Editor (No = 0/Yes = 1): = ")
-    install_OpenShot = input("[Open-Source] OpenShot - Open Video Editor (No = 0/Yes = 1): = ")
-    install_Pitivi = input("[Open-Source] Pitivi - Open Video Editor (No = 0/Yes = 1): = ")
-    install_Audacity = input("[Open-Source] Audacity - Open Audio Editor (No = 0/Yes = 1): = ")
-    install_GrubCustomizer = input("[Unknown] Grub Customizer - For Grub Customition (No = 0/Yes = 1): = ")
-    install_VBOX = input("[Open-Source] Virtual Box - Virtual Computer (No = 0/Yes = 1): = ")
-    install_Notepadqq = input("[Open-Source] Notepadqq - Text Editor (No = 0/Yes = 1): = ")
+    install_GIMP = input(
+        "[Open-Source] GIMP - Raster Graphic Editor (No = 0/Yes = 1): = "
+    )
+    install_Krita = input(
+        "[Open-Source] Krita - Raster Graphic Editor (No = 0/Yes = 1/Yes[flatpak] = 2): = "
+    )
+    install_MyPaint = input(
+        "[Open-Source] MyPaint - Raster Graphic Editor (No = 0/Yes = 1): = "
+    )
+    install_KolourPaint = input(
+        "[Open-Source] KolourPaint - Raster Graphic Editor (No = 0/Yes = 1): = "
+    )
+    install_InkScape = input(
+        "[Open-Source] InkScape - Vector Graphic Editor (No = 0/Yes = 1): = "
+    )
+    install_Blender = input(
+        "[Open-Source] Blender - 3D Editor (No = 0/Yes = 1/Yes[flatpak] = 2): = "
+    )
+    install_SweetHome3D = input(
+        "[Open-Source] Sweet Home 3D - 3D Home Editor (No = 0/Yes = 1): = "
+    )
+    install_Scratch = input(
+        "[Open-Source] Scratch - Game Developer Tools (No = 0/Yes = 1): = "
+    )
+    install_Scratch3 = input(
+        "[Open-Source] Scratch 3 - Game Developer Tools (No = 0/Yes = 1): = "
+    )
+    install_FileZilla = input(
+        "[Open-Source] FileZilla - FTP Client (No = 0/Yes = 1): = "
+    )
+    install_Caja = input(
+        "[Open-Source] Caja - The File Manager of MATE (No = 0/Yes = 1): = "
+    )
+    install_TimeShift = input(
+        "[Open-Source] TimeShift - Alternative to Time Machine (No = 0/Yes = 1): = "
+    )
+    install_PeaZip = input(
+        "[Open-Source] PeaZip - Alternative to WinRar (No = 0/Yes = 1/Yes[flatpak] = 2): = "
+    )
+    install_Kdenline = input(
+        "[Open-Source] Kdenline - Open KDE Video Editor (No = 0/Yes = 1): = "
+    )
+    install_OpenShot = input(
+        "[Open-Source] OpenShot - Open Video Editor (No = 0/Yes = 1): = "
+    )
+    install_Pitivi = input(
+        "[Open-Source] Pitivi - Open Video Editor (No = 0/Yes = 1): = "
+    )
+    install_Audacity = input(
+        "[Open-Source] Audacity - Open Audio Editor (No = 0/Yes = 1): = "
+    )
+    install_GrubCustomizer = input(
+        "[Unknown] Grub Customizer - For Grub Customition (No = 0/Yes = 1): = "
+    )
+    install_VBOX = input(
+        "[Open-Source] Virtual Box - Virtual Computer (No = 0/Yes = 1): = "
+    )
+    install_Notepadqq = input(
+        "[Open-Source] Notepadqq - Text Editor (No = 0/Yes = 1): = "
+    )
     install_Wine = input("[Open-Source] Wine - Windows API (No = 0/Yes = 1): = ")
-    install_PlayOnLinux = input("[Open-Source] PlayOnLinux - For Run Windows Apps (No = 0/Yes = 1): = ")
-    install_Lutris = input("[Open-Source] Lutris - For Run Windows Games (No = 0/Yes = 1): = ")
-    install_ThunderBird = input("[Open-Source] ThunderBird - Open Mail Client(No = 0/Yes = 1): = ")
-    install_LibreWolf = input("[Open-Source] LibreWolf - Open Web-broweser(No = 0/Yes = 1): = ")
-    install_FireFox = input("[Open-Source] FireFox - Open Web-broweser(No = 0/Yes = 1): = ")
-    install_Chromium = input("[Open-Source] Chromium - Open Web-broweser(No = 0/Yes = 1): = ")
-    install_UnGoogledChromium = input("[Open-Source] Ungoogled Chromium - Open Web-broweser(No = 0/Yes = 1): = ")
-    install_Tor = input("[Open-Source] Tor Browser - Web-broweser by Tor Project (No = 0/Yes = 1): = ")
-    install_ShotWell = input("[Open-Source] ShotWell - Image Viewer, Alternative to XnView MP (No = 0/Yes = 1): = ")
-    install_Kate = input("[Open-Source] Kate - KDE Text Editor, Alternative to Sublime Text(No = 0/Yes = 1): = ")
-    install_MousePad = input("[Open-Source] MousePad - XFCE Text Editor (No = 0/Yes = 1): = ")
-    install_PyCharm = input("[Open-Source] PyCharm Community - Community IDE Editor (No = 0/Yes = 1/Yes = 2[flatpak]): = ")
-    install_VSC = input("[Open-Source] VScodium - Development Environment (No = 0/Yes = 1): = ")
-    install_LibreOffice = input("[Open-Source] Libre Office - OpenSource Office (No = 0/Yes = 1): = ")
-    install_BleachBit = input("[Open-Source] BleachBit - Alternative to Piriform Capt_clean (No = 0/Yes = 1): = ")
-    install_Stacer = input("[Open-Source] Stacer - Alternative to Piriform Capt_clean (No = 0/Yes = 1): = ")
+    install_PlayOnLinux = input(
+        "[Open-Source] PlayOnLinux - For Run Windows Apps (No = 0/Yes = 1): = "
+    )
+    install_Lutris = input(
+        "[Open-Source] Lutris - For Run Windows Games (No = 0/Yes = 1): = "
+    )
+    install_ThunderBird = input(
+        "[Open-Source] ThunderBird - Open Mail Client(No = 0/Yes = 1): = "
+    )
+    install_LibreWolf = input(
+        "[Open-Source] LibreWolf - Open Web-broweser(No = 0/Yes = 1): = "
+    )
+    install_FireFox = input(
+        "[Open-Source] FireFox - Open Web-broweser(No = 0/Yes = 1): = "
+    )
+    install_Chromium = input(
+        "[Open-Source] Chromium - Open Web-broweser(No = 0/Yes = 1): = "
+    )
+    install_UnGoogledChromium = input(
+        "[Open-Source] Ungoogled Chromium - Open Web-broweser(No = 0/Yes = 1): = "
+    )
+    install_Tor = input(
+        "[Open-Source] Tor Browser - Web-broweser by Tor Project (No = 0/Yes = 1): = "
+    )
+    install_ShotWell = input(
+        "[Open-Source] ShotWell - Image Viewer, Alternative to XnView MP (No = 0/Yes = 1): = "
+    )
+    install_Kate = input(
+        "[Open-Source] Kate - KDE Text Editor, Alternative to Sublime Text(No = 0/Yes = 1): = "
+    )
+    install_MousePad = input(
+        "[Open-Source] MousePad - XFCE Text Editor (No = 0/Yes = 1): = "
+    )
+    install_PyCharm = input(
+        "[Open-Source] PyCharm Community - Community IDE Editor (No = 0/Yes = 1/Yes = 2[flatpak]): = "
+    )
+    install_VSC = input(
+        "[Open-Source] VScodium - Development Environment (No = 0/Yes = 1): = "
+    )
+    install_LibreOffice = input(
+        "[Open-Source] Libre Office - OpenSource Office (No = 0/Yes = 1): = "
+    )
+    install_BleachBit = input(
+        "[Open-Source] BleachBit - Alternative to Piriform Capt_clean (No = 0/Yes = 1): = "
+    )
+    install_Stacer = input(
+        "[Open-Source] Stacer - Alternative to Piriform Capt_clean (No = 0/Yes = 1): = "
+    )
     install_Cheese = input("[Open-Source] Cheese - Camera (No = 0/Yes = 1): = ")
     install_Gparted = input("[Open-Source] Gparted - Disk Utility (No = 0/Yes = 1): = ")
-    install_QbitTorrent = input("[Open-Source] Qbittorrent - Torrent Client  (No = 0/Yes = 1): = ")
-    install_Transmission = input("[Open-Source] Transmission - Torrent Client  (No = 0/Yes = 1): = ")
-    install_SSR = input("[Open-Source] Simple Screen Recorder - Screen Recorder  (No = 0/Yes = 1): = ")
-    install_OBS = input("[Open-Source] OBS Studio - Screen Recorder  (No = 0/Yes = 1): = ")
-    install_Steam = input("[Proprietary Freeware] Steam - Center For Games and Software (No = 0/Yes = 1): = ")
+    install_QbitTorrent = input(
+        "[Open-Source] Qbittorrent - Torrent Client  (No = 0/Yes = 1): = "
+    )
+    install_Transmission = input(
+        "[Open-Source] Transmission - Torrent Client  (No = 0/Yes = 1): = "
+    )
+    install_SSR = input(
+        "[Open-Source] Simple Screen Recorder - Screen Recorder  (No = 0/Yes = 1): = "
+    )
+    install_OBS = input(
+        "[Open-Source] OBS Studio - Screen Recorder  (No = 0/Yes = 1): = "
+    )
+    install_Steam = input(
+        "[Proprietary Freeware] Steam - Center For Games and Software (No = 0/Yes = 1): = "
+    )
     install_Pidgin = input("[Open-Source] Pidgin - For Chating (No = 0/Yes = 1): = ")
-    install_Telegram = input("[Open-Source Client/Proprietary Server] Telegram - For Chating (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
-    install_Teams = input("[Proprietary Software] Microsoft Teams - For Study (No = 0/Yes = 1): = ")
+    install_Telegram = input(
+        "[Open-Source Client/Proprietary Server] Telegram - For Chating (No = 0/Yes = 1/Yes[flatpak] = 2): = "
+    )
+    install_Teams = input(
+        "[Proprietary Software] Microsoft Teams - For Study (No = 0/Yes = 1): = "
+    )
     install_Gpp = input("[Open-Source] G++ - C++ Compiler (No = 0/Yes = 1): = ")
-    install_ArduinoIDLE = input("[Open-Source] Arduino IDLE - IDLE for Arduino (No = 0/Yes = 1): = ")
-    install_Python3IDLE = input("[Open-Source] Python3 IDLE - IDLE for Python (No = 0/Yes = 1): = ")
-    install_ClamAV = input("[Open-Source] ClamAV - AntiVirus Program(No = 0/Yes = 1): = ")
-    install_GodotEngine = input("[Open-Source] Godot Engine - Game Engine(No = 0/Yes = 1[flatpak]): = ")
-    install_CodeBlocks = input("[Open-Source] Code::Blocks - Alternative to Dev-C++ (No = 0/Yes = 1/Yes[flatpak] = 2): = ")
-    install_GnomeDisk = input("[Open-Source] Gnome Disk - Disk Utility (No = 0/Yes = 1/Yes[flatpak]): = ")
-    install_DoubleCmd = input("[Open-Source] Double commander - Alternative to Total commander (No = 0/Yes = 1): = ")
+    install_ArduinoIDLE = input(
+        "[Open-Source] Arduino IDLE - IDLE for Arduino (No = 0/Yes = 1): = "
+    )
+    install_Python3IDLE = input(
+        "[Open-Source] Python3 IDLE - IDLE for Python (No = 0/Yes = 1): = "
+    )
+    install_ClamAV = input(
+        "[Open-Source] ClamAV - AntiVirus Program(No = 0/Yes = 1): = "
+    )
+    install_GodotEngine = input(
+        "[Open-Source] Godot Engine - Game Engine(No = 0/Yes = 1[flatpak]): = "
+    )
+    install_CodeBlocks = input(
+        "[Open-Source] Code::Blocks - Alternative to Dev-C++ (No = 0/Yes = 1/Yes[flatpak] = 2): = "
+    )
+    install_GnomeDisk = input(
+        "[Open-Source] Gnome Disk - Disk Utility (No = 0/Yes = 1/Yes[flatpak]): = "
+    )
+    install_DoubleCmd = input(
+        "[Open-Source] Double commander - Alternative to Total commander (No = 0/Yes = 1): = "
+    )
     install_Baobab = input("[Open-Source] Baobab - Disk Analyzer (No = 0/Yes = 1): = ")
 
 print("\n==================== Start ====================\n")
 
-#Update
+# Update
 if is_update == "1":
-	update_packege(root_password)
+    update_packege(root_password)
 if is_upgrade == "1":
-	upgrade_packeges(root_password)
+    upgrade_packeges(root_password)
 
 # Check
 # You will have to enable both contrib and non-free
 if update_intel_microcodes == "1":
     what_is_it("MicroCode For Intel")
-    apt_install(root_password,"intel-microcode")
+    apt_install(root_password, "intel-microcode")
 
 if update_amd64_microcodes == "1":
     what_is_it("MicroCode For Amd64")
-    apt_install(root_password,"amd64-microcode")
+    apt_install(root_password, "amd64-microcode")
 
 # TODO Check
 if install_MediaCodes == "1":
     what_is_it("Media Codes")
-    apt_install(root_password,"libavcodec-extra")
+    apt_install(root_password, "libavcodec-extra")
 
-#Fixes
+# Fixes
 if is_fix_gedit == "1":
     fix_gedit(root_password)
 
 if is_fix_plank == "1":
     fix_plank(root_password)
 
-#Installs
+# Installs
 if install_flatpak == "1":
     flatpak(root_password)
 
 if install_VLC == "1":
     what_is_it("VLC")
-    apt_install(root_password,"vlc")
+    apt_install(root_password, "vlc")
 
 if install_VLC == "1":
     what_is_it("MPV")
-    apt_install(root_password,"mpv")
+    apt_install(root_password, "mpv")
 
 if install_GIMP == "1":
     what_is_it("GIMP")
-    apt_install(root_password,"gimp")
+    apt_install(root_password, "gimp")
 
 if install_Krita == "1":
     what_is_it("Krita")
-    apt_install(root_password,"krita")
+    apt_install(root_password, "krita")
 elif install_Krita == "2":
     what_is_it("Krita [flatpak]")
     execute("flatpak install flathub org.kde.krita -y")
 
 if install_MyPaint == "1":
     what_is_it("MyPaint")
-    apt_install(root_password,"mypaint-data")
-    apt_install(root_password,"mypaint")
+    apt_install(root_password, "mypaint-data")
+    apt_install(root_password, "mypaint")
 
 if install_MyPaint == "1":
     what_is_it("KolourPaint")
-    apt_install(root_password,"kolourpaint")
+    apt_install(root_password, "kolourpaint")
 
 if install_InkScape == "1":
     what_is_it("InkScape")
-    apt_install(root_password,"inkscape")
+    apt_install(root_password, "inkscape")
 
 if install_Blender == "1":
     what_is_it("Blender")
-    apt_install(root_password,"blender")
+    apt_install(root_password, "blender")
 elif install_Blender == "2":
     what_is_it("Blender [Flatpak]")
     execute("flatpak install flathub org.blender.Blender -y")
 
 if install_SweetHome3D == "1":
     what_is_it("SweetHome3D")
-    apt_install(root_password,"sweethome3d")
+    apt_install(root_password, "sweethome3d")
 
 # TODO Add Turbowarp
 if install_Scratch == "1":
     what_is_it("Scratch")
-    apt_install(root_password,"scratch")
+    apt_install(root_password, "scratch")
 
 if install_Scratch3 == "1":
     what_is_it("Scratch 3 [Flatpak]")
@@ -507,56 +643,60 @@ if install_Scratch3 == "1":
 
 if install_FileZilla == "1":
     what_is_it("FileZilla")
-    apt_install(root_password,"filezilla")
+    apt_install(root_password, "filezilla")
 
 if install_Caja == "1":
     what_is_it("Caja")
-    apt_install(root_password,"caja")
+    apt_install(root_password, "caja")
 
 if install_Kdenline == "1":
     what_is_it("Kdenline")
     if not choose_method_for_Debian:
-        execute_as_root(root_password,"sudo add-apt-repository ppa:kdenlive/kdenlive-stable --yes")
+        execute_as_root(
+            root_password, "sudo add-apt-repository ppa:kdenlive/kdenlive-stable --yes"
+        )
     update_packege(root_password)
-    apt_install(root_password,"kdenlive")
+    apt_install(root_password, "kdenlive")
 
 if install_OpenShot == "1":
     what_is_it("OpenShot")
-    apt_install(root_password,"openshot")
+    apt_install(root_password, "openshot")
 
 if install_Pitivi == "1":
     what_is_it("Pitivi")
-    apt_install(root_password,"pitivi")
+    apt_install(root_password, "pitivi")
 
 if install_Audacity == "1":
     what_is_it("Audacity")
-    apt_install(root_password,"audacity")
+    apt_install(root_password, "audacity")
 
 if install_GrubCustomizer == "1":
     what_is_it("GrubCustomizer")
-    apt_install(root_password,"grub-customizer")
+    apt_install(root_password, "grub-customizer")
 
 # TODO Check
 if install_VBOX == "1":
     what_is_it("Virtualbox")
     if choose_method_for_Debian:
-        execute("wget -nc https://download.virtualbox.org/virtualbox/7.0.12/virtualbox-7.0_7.0.12-159484~Debian~bookworm_amd64.deb")
-        apt_install(root_password,"./virtualbox-*")
+        execute(
+            "wget -nc https://download.virtualbox.org/virtualbox/7.0.12/virtualbox-7.0_7.0.12-159484~Debian~bookworm_amd64.deb"
+        )
+        apt_install(root_password, "./virtualbox-*")
     else:
-        apt_install(root_password,"virtualbox")
+        apt_install(root_password, "virtualbox")
 
 if install_Notepadqq == "1":
     what_is_it("Notepadqq")
-    apt_install(root_password,"notepadqq")
+    apt_install(root_password, "notepadqq")
 
 if install_Pidgin == "1":
     what_is_it("Pidgin")
-    apt_install(root_password,"pidgin")
+    apt_install(root_password, "pidgin")
 
 if install_Telegram == "2":
     what_is_it("Telegram [flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub org.telegram.desktop -y")
+    execute_as_root(root_password, "flatpak install flathub org.telegram.desktop -y")
 
 if install_Telegram == "1":
     what_is_it("Telegram")
@@ -564,54 +704,68 @@ if install_Telegram == "1":
 
 if install_Wine == "1":
     what_is_it("Wine")
-    apt_install(root_password,"wine")
+    apt_install(root_password, "wine")
 
 if install_Gparted == "1":
     what_is_it("Gparted")
-    apt_install(root_password,"gparted")
+    apt_install(root_password, "gparted")
 
 # TODO Check
 if install_PlayOnLinux == "1":
     what_is_it("PlayOnLinux")
     if choose_method_for_Debian:
-        execute_as_root(root_password,"sudo dpkg --add-architecture i386")
-        apt_install(root_password,"netcat")
-        execute_as_root(root_password,'wget -q "http://deb.playonlinux.com/public.gpg" -O- | apt-key add -')
-        execute_as_root(root_password,"wget http://deb.playonlinux.com/playonlinux_wheezy.list -O /etc/apt/sources.list.d/playonlinux.list")
+        execute_as_root(root_password, "sudo dpkg --add-architecture i386")
+        apt_install(root_password, "netcat")
+        execute_as_root(
+            root_password,
+            'wget -q "http://deb.playonlinux.com/public.gpg" -O- | apt-key add -',
+        )
+        execute_as_root(
+            root_password,
+            "wget http://deb.playonlinux.com/playonlinux_wheezy.list -O /etc/apt/sources.list.d/playonlinux.list",
+        )
         update_packege(root_password)
-        apt_install(root_password,"playonlinux")
-        execute_as_root(root_password,"sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade")
-        apt_install(root_password,"multiarch-support libgl1-mesa-glx:i386")
+        apt_install(root_password, "playonlinux")
+        execute_as_root(
+            root_password,
+            "sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade",
+        )
+        apt_install(root_password, "multiarch-support libgl1-mesa-glx:i386")
     else:
-        apt_install(root_password,"playonlinux")
-        apt_install(root_password,"winbind")
-        apt_install(root_password,"winetricks")
+        apt_install(root_password, "playonlinux")
+        apt_install(root_password, "winbind")
+        apt_install(root_password, "winetricks")
 
 if install_Lutris == "1":
     what_is_it("Lutris")
-    execute_as_root(root_password,"sudo add-apt-repository ppa:lutris-team/lutris --yes")
+    execute_as_root(
+        root_password, "sudo add-apt-repository ppa:lutris-team/lutris --yes"
+    )
     update_packege(root_password)
-    apt_install(root_password,"lutris")
+    apt_install(root_password, "lutris")
 
 if install_ThunderBird == "1":
     what_is_it("ThunderBird")
-    apt_install(root_password,"thunderbird")
+    apt_install(root_password, "thunderbird")
 
 # TODO Check
 if install_LibreWolf == "1":
     what_is_it("LibreWolf")
-    execute_as_root(root_password,'distro=$(if echo " bullseye focal impish jammy uma una " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi) && echo "deb [arch=amd64] http://deb.librewolf.net $distro main" | sudo tee /etc/apt/sources.list.d/librewolf.list && sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg && sudo apt update -y && sudo apt install librewolf -y')
+    execute_as_root(
+        root_password,
+        'distro=$(if echo " bullseye focal impish jammy uma una " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi) && echo "deb [arch=amd64] http://deb.librewolf.net $distro main" | sudo tee /etc/apt/sources.list.d/librewolf.list && sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg && sudo apt update -y && sudo apt install librewolf -y',
+    )
 
 if install_FireFox == "1":
     what_is_it("FireFox")
     if choose_method_for_Debian:
-        apt_install(root_password,"firefox-esr")
+        apt_install(root_password, "firefox-esr")
     else:
-        apt_install(root_password,"firefox")
+        apt_install(root_password, "firefox")
 
 if install_Chromium == "1":
     what_is_it("Chromium")
-    apt_install(root_password,"chromium-browser")
+    apt_install(root_password, "chromium-browser")
 elif install_Chromium == "2":
     what_is_it("Chromium [Flatpak]")
     flatpak(root_password)
@@ -620,11 +774,13 @@ elif install_Chromium == "2":
 if install_UnGoogledChromium == "1":
     what_is_it("Ungoogled Chromium [Flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub com.github.Eloston.UngoogledChromium -y")
+    execute_as_root(
+        root_password, "flatpak install flathub com.github.Eloston.UngoogledChromium -y"
+    )
 
 if install_Tor == "1":
     what_is_it("Tor Browser")
-    apt_install(root_password,"torbrowser-launcher")
+    apt_install(root_password, "torbrowser-launcher")
 elif install_Tor == "2":
     what_is_it("Tor Browser [flatpak]")
     flatpak(root_password)
@@ -632,168 +788,187 @@ elif install_Tor == "2":
 
 if install_ShotWell == "1":
     what_is_it("ShotWell")
-    apt_install(root_password,"shotwell")
+    apt_install(root_password, "shotwell")
 
 if install_TimeShift == "1":
     what_is_it("TimeShift")
     if not choose_method_for_Debian:
-        execute_as_root(root_password,'sudo apt-add-repository -y ppa:teejee2008/ppa')
+        execute_as_root(root_password, "sudo apt-add-repository -y ppa:teejee2008/ppa")
     update_packege(root_password)
-    apt_install(root_password,"timeshift")
+    apt_install(root_password, "timeshift")
 
 # TODO Check
 if install_PeaZip == "1":
     what_is_it("PeaZip")
-    execute_as_root(root_password,"wget -nc https://github.com/peazip/PeaZip/releases/download/9.5.0/peazip_9.5.0.LINUX.GTK2-1_amd64.deb")
-    apt_install(root_password,"./peazip_*")
+    execute_as_root(
+        root_password,
+        "wget -nc https://github.com/peazip/PeaZip/releases/download/9.5.0/peazip_9.5.0.LINUX.GTK2-1_amd64.deb",
+    )
+    apt_install(root_password, "./peazip_*")
 elif install_PeaZip == "2":
     what_is_it("PeaZip[flatpak]")
     update_packege(root_password)
-    apt_install(root_password,"flatpak")
+    apt_install(root_password, "flatpak")
     execute("flatpak install flathub io.github.peazip.PeaZip -y")
 
 # TODO Check
 if install_VSC == "1":
     what_is_it("VScodium")
-    execute("wget -nc https://github.com/VSCodium/vscodium/releases/download/1.84.0.23306/codium_1.84.0.23306_amd64.deb")
-    apt_install(root_password,"./codium_*")
+    execute(
+        "wget -nc https://github.com/VSCodium/vscodium/releases/download/1.84.0.23306/codium_1.84.0.23306_amd64.deb"
+    )
+    apt_install(root_password, "./codium_*")
 elif install_VSC == "1":
     what_is_it("VScodium [flatpak]")
     flatpak(root_password)
-    execute(root_password,"flatpak install flathub com.vscodium.codium -y")
+    execute(root_password, "flatpak install flathub com.vscodium.codium -y")
 
 # TODO Check
 if install_PyCharm == "1":
     what_is_it("PyCharm")
-    execute("wget -nc https://download-cdn.jetbrains.com/python/pycharm-community-2023.2.3.tar.gz")
+    execute(
+        "wget -nc https://download-cdn.jetbrains.com/python/pycharm-community-2023.2.3.tar.gz"
+    )
     execute("tar xvf pycharm-community-2023.2.3.tar.gz -C ~/pycharm-community")
 elif install_PyCharm == "2":
     what_is_it("PyCharm [flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub com.jetbrains.PyCharm-Community -y")
+    execute_as_root(
+        root_password, "flatpak install flathub com.jetbrains.PyCharm-Community -y"
+    )
 
 if install_Kate == "1":
     what_is_it("Kate")
-    apt_install(root_password,"kate")
+    apt_install(root_password, "kate")
 
 if install_MousePad == "1":
     what_is_it("MousePad")
-    apt_install(root_password,"mousepad")
+    apt_install(root_password, "mousepad")
 
 if install_LibreOffice == "1":
     what_is_it("LibreOffice")
     if not choose_method_for_Debian:
-        execute_as_root(root_password,"sudo add-apt-repository ppa:libreoffice/ppa --yes")
+        execute_as_root(
+            root_password, "sudo add-apt-repository ppa:libreoffice/ppa --yes"
+        )
     update_packege(root_password)
-    apt_install(root_password,"libreoffice")
+    apt_install(root_password, "libreoffice")
 
 if install_BleachBit == "1":
     what_is_it("Bleach Bit")
-    apt_install(root_password,"bleachbit")
+    apt_install(root_password, "bleachbit")
 
 if install_Stacer == "1":
     what_is_it("Stacer")
     if choose_method_for_Debian:
-        execute_as_root(root_password,"wget -nc https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb")
-        apt_install(root_password,"./stacer_*")
+        execute_as_root(
+            root_password,
+            "wget -nc https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb",
+        )
+        apt_install(root_password, "./stacer_*")
     else:
-        apt_install(root_password,"stacer")
+        apt_install(root_password, "stacer")
 
 if install_Cheese == "1":
     what_is_it("Cheese")
-    apt_install(root_password,"cheese")
+    apt_install(root_password, "cheese")
 
 if install_QbitTorrent == "1":
     what_is_it("qBittorrent")
-    apt_install(root_password,"qbittorrent")
+    apt_install(root_password, "qbittorrent")
 
 if install_SSR == "1":
     what_is_it("Simple Screen Recorder")
     update_packege(root_password)
-    apt_install(root_password,"simplescreenrecorder")
+    apt_install(root_password, "simplescreenrecorder")
 
 if install_OBS == "1":
     what_is_it("OBS Studio")
     update_packege(root_password)
-    apt_install(root_password,"obs-studio")
+    apt_install(root_password, "obs-studio")
 
 if install_Steam == "1":
     what_is_it("Steam")
-    apt_install(root_password,"steam")
+    apt_install(root_password, "steam")
 elif install_Steam == "2":
     what_is_it("Steam [flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub com.valvesoftware.Steam -y")
+    execute_as_root(root_password, "flatpak install flathub com.valvesoftware.Steam -y")
 
 # TODO Check
 if install_Teams == "1":
     what_is_it("MS Teams [Unofficial flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y")
+    execute_as_root(
+        root_password,
+        "flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y",
+    )
 elif install_Teams == "2":
     what_is_it("MS Teams [flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub com.microsoft.Teams -y")
+    execute_as_root(root_password, "flatpak install flathub com.microsoft.Teams -y")
 
 if install_Gpp == "1":
     what_is_it("G++")
-    execute_as_root(root_password,"sudo apt update --yes")
-    execute_as_root(root_password,"sudo apt-get install g++ -y")
+    execute_as_root(root_password, "sudo apt update --yes")
+    execute_as_root(root_password, "sudo apt-get install g++ -y")
     print("\nHint: Use to build $ g++ <YourCode>.cpp -o <NameYouFutureProgram> ")
     print("Hint: Use to run $ ./<NameYouProgram>\n")
 
 if install_ArduinoIDLE == "1":
     what_is_it("Arduino IDLE")
-    execute_as_root(root_password,"sudo apt install arduino --yes")
+    execute_as_root(root_password, "sudo apt install arduino --yes")
 
 if install_Python3IDLE == "1":
     what_is_it("Python IDLE")
-    execute_as_root(root_password,"sudo apt-get install idle3 --yes")
+    execute_as_root(root_password, "sudo apt-get install idle3 --yes")
 
 if install_GnomeSoftware == "1":
     what_is_it("Gnome Software")
-    execute_as_root(root_password,"sudo snap remove gnome-software")
-    apt_install(root_password,"gnome-software gnome-software-plugin-flatpak")
+    execute_as_root(root_password, "sudo snap remove gnome-software")
+    apt_install(root_password, "gnome-software gnome-software-plugin-flatpak")
 
 if install_ClamAV == "1":
     what_is_it("ClamAV")
-    execute_as_root(root_password,"sudo apt-get install clamav --yes")
-    execute_as_root(root_password,"sudo apt-get install clamav-daemon --yes")
-    execute_as_root(root_password,"sudo apt install clamtk --yes")
-    execute_as_root(root_password,"sudo apt-get install libclamunrar6 --yes")
+    execute_as_root(root_password, "sudo apt-get install clamav --yes")
+    execute_as_root(root_password, "sudo apt-get install clamav-daemon --yes")
+    execute_as_root(root_password, "sudo apt install clamtk --yes")
+    execute_as_root(root_password, "sudo apt-get install libclamunrar6 --yes")
 
 if install_GnomeDisk == "1":
     what_is_it("Gnome Disk")
-    execute_as_root(root_password,"sudo apt-get install gnome-disk-utility --yes")
+    execute_as_root(root_password, "sudo apt-get install gnome-disk-utility --yes")
 
 if install_DoubleCmd == "1":
     what_is_it("Double commander")
-    execute_as_root(root_password,"sudo apt-get install doublecmd-gtk --yes")
+    execute_as_root(root_password, "sudo apt-get install doublecmd-gtk --yes")
 
 if install_Baobab == "1":
     what_is_it("Baobab Disk Analyzer")
-    execute_as_root(root_password,"sudo apt-get install baobab --yes")
+    execute_as_root(root_password, "sudo apt-get install baobab --yes")
 
 if install_CodeBlocks == "1":
     what_is_it("Code::Blocks")
-    apt_install(root_password,"codeblocks")
+    apt_install(root_password, "codeblocks")
 elif install_CodeBlocks == "2":
     what_is_it("Code::Blocks via flatpak")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub org.codeblocks.codeblocks")
+    execute_as_root(root_password, "flatpak install flathub org.codeblocks.codeblocks")
 
 if install_GodotEngine == "1":
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub org.godotengine.Godot -y")
+    execute_as_root(root_password, "flatpak install flathub org.godotengine.Godot -y")
 
 if is_fixing_dependencies == "1":
-    print("\n===================== Updating and fixing dependencies =====================")
+    print(
+        "\n===================== Updating and fixing dependencies ====================="
+    )
     for i in range(3):
         print(f"{i})")
-        execute_as_root(root_password,"sudo apt --fix-broken install --yes")
-        execute_as_root(root_password,"sudo apt install -f -y")
-        execute_as_root(root_password,"sudo apt install dpkg --fix-missing")
-        execute_as_root(root_password,"sudo dpkg --configure -a")
+        execute_as_root(root_password, "sudo apt --fix-broken install --yes")
+        execute_as_root(root_password, "sudo apt install -f -y")
+        execute_as_root(root_password, "sudo apt install dpkg --fix-missing")
+        execute_as_root(root_password, "sudo dpkg --configure -a")
 
 if do_clean == "1":
     apt_clean(root_password)
@@ -801,4 +976,4 @@ if do_clean == "1":
 print("\n===================== End =====================")
 
 if int(input("ReBoot? (No = 0/Yes = 1): = ")):
-    execute_as_root(root_password,"sudo shutdown -r now")
+    execute_as_root(root_password, "sudo shutdown -r now")
