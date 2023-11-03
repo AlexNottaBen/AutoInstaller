@@ -175,6 +175,10 @@ install_GnomeDisk = "0"
 install_Baobab = "0"
 install_Blender = "0"
 install_GnomeSoftware = "0"
+install_FlashPlayer = "0"
+install_MSFonts = "0"
+install_OnlyOffice = "0"
+install_Synaptic = "0"
 
 print("0 - Custom")
 print("1 - Default (For Debian and Debian-based OS)")
@@ -228,6 +232,10 @@ if Selected == "1" or Selected == "2":
     install_DoubleCmd = "1"
     install_Baobab = "1"
     install_GnomeSoftware = "1"
+    install_FlashPlayer = "1"
+    install_MSFonts = "1"
+    install_OnlyOffice = "1"
+    install_Synaptic = "1"
     choose_method_for_Debian = True if Selected == "1" else False
 
 if Selected == "3":
@@ -353,20 +361,16 @@ if Selected == "0":
     is_update = "1"
     is_upgrade = "1"
     print("==================== Set Basic Setting ====================")
-    update_intel_microcodes = input(
-        "Update MicroCode For Intel (No = 0/Yes = 1): = "
-    )
-    update_amd64_microcodes = input(
-        "Update MicroCode For Amd64 (No = 0/Yes = 1): = "
-    )
-    install_MediaCodes = input(
-        "Install Media Codes (No = 0/Yes = 1): = "
-    )
+    update_intel_microcodes = input("Update MicroCode For Intel (No = 0/Yes = 1): = ")
+    update_amd64_microcodes = input("Update MicroCode For Amd64 (No = 0/Yes = 1): = ")
+    install_MediaCodes = input("Install Media Codes (No = 0/Yes = 1): = ")
     is_fix_gedit = input(
         "Use this If Cyrillic is not displayed in the Gedit text editor! (No = 0/Yes = 1): = "
     )
-    is_fix_plank = input(
-        "Remove anchor icon in Plank (No = 0/Yes = 1): = "
+    is_fix_plank = input("Remove anchor icon in Plank (No = 0/Yes = 1): = ")
+    install_FlashPlayer = input("Install FlashPlayer (No = 0/Yes[flatpak] = 1): = ")
+    install_MSFonts = input(
+        "Install Microsoft's fonts - for example, Times New Roman (No = 0/Yes = 1): = "
     )
     print("==================== Install Programs ====================")
     install_flatpak = input(
@@ -375,9 +379,7 @@ if Selected == "0":
     install_VLC = input(
         "[Open-Source] VLC - MediaPlayer (No = 0/Yes = 1/Yes[flatpak] = 2): = "
     )
-    install_MPV = input(
-        "[Open-Source] MPV - MediaPlayer (No = 0/Yes = 1): = "
-    )
+    install_MPV = input("[Open-Source] MPV - MediaPlayer (No = 0/Yes = 1): = ")
     install_GIMP = input(
         "[Open-Source] GIMP - Raster Graphic Editor (No = 0/Yes = 1): = "
     )
@@ -438,9 +440,7 @@ if Selected == "0":
     install_Notepadqq = input(
         "[Open-Source] Notepadqq - Text Editor (No = 0/Yes = 1): = "
     )
-    install_Wine = input(
-        "[Open-Source] Wine - Windows API (No = 0/Yes = 1): = "
-    )
+    install_Wine = input("[Open-Source] Wine - Windows API (No = 0/Yes = 1): = ")
     install_PlayOnLinux = input(
         "[Open-Source] PlayOnLinux - For Run Windows Apps (No = 0/Yes = 1): = "
     )
@@ -451,7 +451,7 @@ if Selected == "0":
         "[Open-Source] ThunderBird - Open Mail Client(No = 0/Yes = 1): = "
     )
     install_LibreWolf = input(
-        "[Open-Source] LibreWolf - Open Web-broweser(No = 0/Yes = 1): = "
+        "[Open-Source] LibreWolf - Open Web-broweser(No = 0/Yes = 1/Yes[flatpak] = 2): = "
     )
     install_FireFox = input(
         "[Open-Source] FireFox - Open Web-broweser(No = 0/Yes = 1): = "
@@ -481,7 +481,10 @@ if Selected == "0":
         "[Open-Source] VScodium - Development Environment (No = 0/Yes = 1/Yes[flatpak] = 2): = "
     )
     install_LibreOffice = input(
-        "[Open-Source] Libre Office - OpenSource Office (No = 0/Yes = 1): = "
+        "[Open-Source] LibreOffice - Open Source Office (No = 0/Yes = 1): = "
+    )
+    install_OnlyOffice = input(
+        "[Open-Source] OnlyOffice - Open Source Office (No = 0/Yes[flatpak only] = 1): = "
     )
     install_BleachBit = input(
         "[Open-Source] BleachBit - Alternative to Piriform Capt_clean (No = 0/Yes = 1): = "
@@ -489,12 +492,8 @@ if Selected == "0":
     install_Stacer = input(
         "[Open-Source] Stacer - Alternative to Piriform Capt_clean (No = 0/Yes = 1): = "
     )
-    install_Cheese = input(
-        "[Open-Source] Cheese - Camera (No = 0/Yes = 1): = "
-    )
-    install_Gparted = input(
-        "[Open-Source] Gparted - Disk Utility (No = 0/Yes = 1): = "
-    )
+    install_Cheese = input("[Open-Source] Cheese - Camera (No = 0/Yes = 1): = ")
+    install_Gparted = input("[Open-Source] Gparted - Disk Utility (No = 0/Yes = 1): = ")
     install_QbitTorrent = input(
         "[Open-Source] Qbittorrent - Torrent Client  (No = 0/Yes = 1): = "
     )
@@ -507,9 +506,7 @@ if Selected == "0":
     install_Steam = input(
         "[Proprietary Freeware] Steam - Center For Games and Software (No = 0/Yes = 1/Yes[flatpak] = 2): = "
     )
-    install_Pidgin = input(
-        "[Open-Source] Pidgin - For Chating (No = 0/Yes = 1): = "
-    )
+    install_Pidgin = input("[Open-Source] Pidgin - For Chating (No = 0/Yes = 1): = ")
     install_Telegram = input(
         "[Open-Source Client/Proprietary Server] Telegram - For Chating (No = 0/Yes[flatpak only] = 1): = "
     )
@@ -526,6 +523,9 @@ if Selected == "0":
     install_GnomeSoftware = input(
         "[Open-Source] Gnome Software - Application Manager (No = 0/Yes = 1): = "
     )
+    install_Synaptic = input(
+        "[Open-Source] Synaptic - Application Manager (No = 0/Yes = 1): = "
+    )
     install_ClamAV = input(
         "[Open-Source] ClamAV - AntiVirus Program(No = 0/Yes = 1): = "
     )
@@ -535,9 +535,7 @@ if Selected == "0":
     install_DoubleCmd = input(
         "[Open-Source] Double commander - Alternative to Total commander (No = 0/Yes = 1): = "
     )
-    install_Baobab = input(
-        "[Open-Source] Baobab - Disk Analyzer (No = 0/Yes = 1): = "
-    )
+    install_Baobab = input("[Open-Source] Baobab - Disk Analyzer (No = 0/Yes = 1): = ")
     install_CodeBlocks = input(
         "[Open-Source] Code::Blocks - Alternative to Dev-C++ (No = 0/Yes = 1/Yes[flatpak] = 2): = "
     )
@@ -547,9 +545,7 @@ if Selected == "0":
     install_IPTables = input(
         "[Open-Source] IPTables - Net Tools(No = 0/Yes = 1[flatpak]): = "
     )
-    install_UFW = input(
-        "[Open-Source] UFW - Firewall(No = 0/Yes = 1[flatpak]): = "
-    )
+    install_UFW = input("[Open-Source] UFW - Firewall(No = 0/Yes = 1[flatpak]): = ")
 
 print("\n==================== Start ====================\n")
 
@@ -584,6 +580,15 @@ if is_fix_plank == "1":
 # Installs
 if install_flatpak == "1":
     flatpak(root_password)
+
+if install_FlashPlayer == "1":
+    what_is_it("Flash Player")
+    flatpak_install("com.adobe.Flash-Player-Projector")
+
+if install_MSFonts == "1":
+    what_is_it("Microsoft's Fonts")
+    apt_install(root_password, "ttf-mscorefonts-installer")
+    apt_install(root_password, "msttcorefonts")
 
 if install_VLC == "1":
     what_is_it("VLC")
@@ -638,7 +643,6 @@ if install_Scratch == "1":
 
 if install_Scratch3 == "1":
     what_is_it("Scratch 3 [Flatpak only]")
-    flatpak(root_password)
     flatpak_install("edu.mit.Scratch")
 
 if install_FileZilla == "1":
@@ -755,10 +759,28 @@ if install_ThunderBird == "1":
 # TODO Check
 if install_LibreWolf == "1":
     what_is_it("LibreWolf")
-    execute_as_root(
-        root_password,
-        'distro=$(if echo " bullseye focal impish jammy uma una " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi) && echo "deb [arch=amd64] http://deb.librewolf.net $distro main" | sudo tee /etc/apt/sources.list.d/librewolf.list && sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg && sudo apt update -y && sudo apt install librewolf -y',
-    )
+    if not choose_method_for_Debian:
+        execute_as_root(
+            root_password,
+            'distro=$(if echo " bullseye focal impish jammy uma una " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi) && echo "deb [arch=amd64] http://deb.librewolf.net $distro main" | sudo tee /etc/apt/sources.list.d/librewolf.list && sudo wget https://deb.librewolf.net/keyring.gpg -O /etc/apt/trusted.gpg.d/librewolf.gpg && sudo apt update -y && sudo apt install librewolf -y',
+        )
+    elif choose_method_for_Debian:
+        execute_as_root(
+            root_password,
+            """sudo apt update && sudo apt install -y wget gnupg lsb-release apt-transport-https ca-certificates
+distro=$(if echo " una bookworm vanessa focal jammy bullseye vera uma " | grep -q " $(lsb_release -sc) "; then lsb_release -sc; else echo focal; fi) && wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg && sudo tee /etc/apt/sources.list.d/librewolf.sources << EOF > /dev/null
+Types: deb
+URIs: https://deb.librewolf.net
+Suites: $distro
+Components: main
+Architectures: amd64
+Signed-By: /usr/share/keyrings/librewolf.gpg
+EOF
+sudo apt update && sudo apt install librewolf -y""",
+        )
+
+elif install_LibreWolf == "2":
+    flatpak_install("io.gitlab.librewolf-community")
 
 if install_FireFox == "1":
     what_is_it("FireFox")
@@ -772,12 +794,12 @@ if install_Chromium == "1":
     apt_install(root_password, "chromium-browser")
 elif install_Chromium == "2":
     what_is_it("Chromium [Flatpak]")
-    flatpak(root_password)
+
     flatpak_install("org.chromium.Chromium")
 
 if install_UnGoogledChromium == "1":
     what_is_it("Ungoogled Chromium [Flatpak]")
-    flatpak(root_password)
+
     flatpak_install("com.github.Eloston.UngoogledChromium")
 
 if install_Tor == "1":
@@ -785,7 +807,7 @@ if install_Tor == "1":
     apt_install(root_password, "torbrowser-launcher")
 elif install_Tor == "2":
     what_is_it("Tor Browser [flatpak]")
-    flatpak(root_password)
+
     flatpak_install("com.github.micahflee.torbrowser-launcher")
 
 if install_ShotWell == "1":
@@ -809,7 +831,7 @@ if install_PyCharm == "1":
     execute("tar xvf pycharm-community-2023.2.3.tar.gz -C ~/pycharm-community")
 elif install_PyCharm == "2":
     what_is_it("PyCharm Community [flatpak]")
-    flatpak(root_password)
+
     flatpak_install("com.jetbrains.PyCharm-Community")
 
 # TODO Check
@@ -821,7 +843,7 @@ if install_VSC == "1":
     apt_install(root_password, "./codium_*")
 elif install_VSC == "2":
     what_is_it("VScodium [flatpak]")
-    flatpak(root_password)
+
     flatpak_install("com.vscodium.codium")
 
 if install_LibreOffice == "1":
@@ -832,6 +854,10 @@ if install_LibreOffice == "1":
         )
     update_packege(root_password)
     apt_install(root_password, "libreoffice")
+
+if install_OnlyOffice == "1":
+    what_is_it("OnlyOffice [Flatpak only]")
+    flatpak_install("org.onlyoffice.desktopeditors")
 
 if install_BleachBit == "1":
     what_is_it("Bleach Bit")
@@ -875,7 +901,7 @@ if install_Steam == "1":
     apt_install(root_password, "steam")
 elif install_Steam == "2":
     what_is_it("Steam [flatpak]")
-    flatpak(root_password)
+
     flatpak_install("com.valvesoftware.Steam")
 
 if install_Pidgin == "1":
@@ -884,17 +910,17 @@ if install_Pidgin == "1":
 
 if install_Telegram == "1":
     what_is_it("Telegram [flatpak only]")
-    flatpak(root_password)
+
     flatpak_install("org.telegram.desktop")
 
 # TODO Check
 if install_Teams == "1":
     what_is_it("MS Teams [Unofficial flatpak]")
-    flatpak(root_password)
+
     flatpak_install("com.github.IsmaelMartinez.teams_for_linux")
 elif install_Teams == "2":
     what_is_it("MS Teams [flatpak]")
-    flatpak(root_password)
+
     flatpak_install("com.microsoft.Teams")
 
 if install_Gpp == "1":
@@ -916,6 +942,10 @@ if install_GnomeSoftware == "1":
     what_is_it("Gnome Software")
     execute_as_root(root_password, "sudo snap remove gnome-software")
     apt_install(root_password, "gnome-software gnome-software-plugin-flatpak")
+
+if install_Synaptic == "1":
+    what_is_it("Synaptic")
+    apt_install(root_password, "synaptic")
 
 if install_ClamAV == "1":
     what_is_it("ClamAV")
@@ -941,7 +971,7 @@ if install_CodeBlocks == "1":
     apt_install(root_password, "codeblocks")
 elif install_CodeBlocks == "2":
     what_is_it("Code::Blocks via flatpak")
-    flatpak(root_password)
+
     flatpak_install("org.codeblocks.codeblocks")
 
 if install_GodotEngine == "1":
@@ -949,7 +979,7 @@ if install_GodotEngine == "1":
     execute_as_root(root_password, "godot3")
 elif install_GodotEngine == "2":
     what_is_it("Godot 3 [Flatpak]")
-    flatpak(root_password)
+
     flatpak_install("org.godotengine.Godot3")
 
 if install_IPTables == "1":
