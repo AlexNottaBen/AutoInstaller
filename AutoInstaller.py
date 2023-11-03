@@ -1,8 +1,8 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from getpass import getpass
 from os import system as execute
+from getpass import getpass as input_password
 
 
 def execute_as_root(root_password,command):
@@ -59,12 +59,11 @@ def clear():
 # Begin
 clear()
 logo()
-root_password = getpass("Input Root Password > ")
+root_password = input_password("Input Root Password > ")
 clear()
 logo()
 
 choose_method_for_Debian = False
-choose_flatpak_method = False
 
 do_clean = "0"
 is_fixing_dependencies = "0"
@@ -95,7 +94,6 @@ install_Audacity = "0"
 install_GrubCustomizer = "0"
 install_VBOX = "0"
 install_Notepadqq = "0"
-install_Notepadplusplus = "0"
 install_Wine = "0"
 install_PlayOnLinux = "0"
 install_FireFox = "0"
@@ -190,7 +188,6 @@ if Selected == "1":
     install_Baobab = "1"
     install_GnomeSoftware = "1"
     choose_method_for_Debian = True
-    choose_flatpak_method = True
 
 if Selected == "2":
     update_intel_microcodes = "1"
@@ -202,7 +199,6 @@ if Selected == "2":
     install_GIMP = "1"
     install_PeaZip = "1"
     install_VBOX = "1"
-    install_Notepadplusplus = "0"
     install_Wine = "1"
     install_LibreWolf = "1"
     install_UnGoogledChromium = "1"
@@ -233,7 +229,6 @@ if Selected == "2":
     install_KolourPaint = "1"
     install_GnomeSoftware = "1"
     choose_method_for_Debian = False
-    choose_flatpak_method = False
 
 if Selected == "3":
     install_flatpak = "0"
@@ -333,7 +328,6 @@ if Selected == "F":
     install_Stacer = "1"
     install_GnomeSoftware = "1"
     choose_method_for_Debian = False
-    choose_flatpak_method = False
 
 if Selected == "Y":
     update_intel_microcodes = "1"
@@ -354,7 +348,6 @@ if Selected == "Y":
     install_Discord = "1"
     install_GnomeSoftware = "1"
     choose_method_for_Debian = False
-    choose_flatpak_method = False
 
 if Selected == "0":
     is_update = "1"
@@ -388,7 +381,6 @@ if Selected == "0":
     install_GrubCustomizer = input("[Unknown] Grub Customizer - For Grub Customition (No = 0/Yes = 1): = ")
     install_VBOX = input("[Open-Source] Virtual Box - Virtual Computer (No = 0/Yes = 1): = ")
     install_Notepadqq = input("[Open-Source] Notepadqq - Text Editor (No = 0/Yes = 1): = ")
-    install_Notepadplusplus = input("[Open-Source] Notepad++ - Text Editor (No = 0/Yes = 1): = ")
     install_Wine = input("[Open-Source] Wine - Windows API (No = 0/Yes = 1): = ")
     install_PlayOnLinux = input("[Open-Source] PlayOnLinux - For Run Windows Apps (No = 0/Yes = 1): = ")
     install_Lutris = input("[Open-Source] Lutris - For Run Windows Games (No = 0/Yes = 1): = ")
@@ -475,10 +467,9 @@ if install_GIMP == "1":
 if install_Krita == "1":
     what_is_it("Krita")
     apt_install(root_password,"krita")
-
-if install_Krita == "2":
+elif install_Krita == "2":
     what_is_it("Krita [flatpak]")
-    execute_as_root(root_password,"flatpak install flathub org.kde.krita -y")
+    execute("flatpak install flathub org.kde.krita -y")
 
 if install_MyPaint == "1":
     what_is_it("MyPaint")
@@ -497,8 +488,8 @@ if install_Blender == "1":
     what_is_it("Blender")
     apt_install(root_password,"blender")
 elif install_Blender == "2":
-    what_is_it("Blender")
-    execute_as_root(root_password,"flatpak install flathub org.blender.Blender -y")
+    what_is_it("Blender [Flatpak]")
+    execute("flatpak install flathub org.blender.Blender -y")
 
 if install_SweetHome3D == "1":
     what_is_it("SweetHome3D")
@@ -510,9 +501,9 @@ if install_Scratch == "1":
     apt_install(root_password,"scratch")
 
 if install_Scratch3 == "1":
-    what_is_it("Scratch 3")
+    what_is_it("Scratch 3 [Flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub edu.mit.Scratch -y")
+    execute("flatpak install flathub edu.mit.Scratch -y")
 
 if install_FileZilla == "1":
     what_is_it("FileZilla")
@@ -549,24 +540,10 @@ if install_GrubCustomizer == "1":
 if install_VBOX == "1":
     what_is_it("Virtualbox")
     if choose_method_for_Debian:
-        update_packege(root_password)
-        execute_as_root(root_password,"wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -")
-        execute_as_root(root_password,'echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list')
-        update_packege(root_password)
-        apt_install(root_password,"virtualbox-6.1")
-        '''
-        virtualbox-6.1 (6.1.24-145767~Ubuntu~bionic)
-        virtualbox-6.0 (6.0.24-139119~Ubuntu~bionic)
-        virtualbox-5.2 (5.2.44-139111~Ubuntu~bionic)
-        virtualbox-5.1 (5.1.38-122592~Ubuntu~bionic)
-        '''
+        execute("wget -nc https://download.virtualbox.org/virtualbox/7.0.12/virtualbox-7.0_7.0.12-159484~Debian~bookworm_amd64.deb")
+        apt_install(root_password,"./virtualbox-*")
     else:
         apt_install(root_password,"virtualbox")
-
-if install_Notepadplusplus == "1":
-    what_is_it("Notepad++")
-    update_packege(root_password)
-    # TODO !!!
 
 if install_Notepadqq == "1":
     what_is_it("Notepadqq")
@@ -635,30 +612,27 @@ if install_FireFox == "1":
 if install_Chromium == "1":
     what_is_it("Chromium")
     apt_install(root_password,"chromium-browser")
-
-if install_Chromium == "2":
-    what_is_it("Chromium [flatpak]")
+elif install_Chromium == "2":
+    what_is_it("Chromium [Flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub org.chromium.Chromium -y")
+    execute("flatpak install flathub org.chromium.Chromium -y")
 
 if install_UnGoogledChromium == "1":
-    what_is_it("Ungoogled Chromium")
+    what_is_it("Ungoogled Chromium [Flatpak]")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.github.Eloston.UngoogledChromium -y")
 
 if install_Tor == "1":
     what_is_it("Tor Browser")
     apt_install(root_password,"torbrowser-launcher")
-
-if install_Tor == "2":
+elif install_Tor == "2":
     what_is_it("Tor Browser [flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub com.github.micahflee.torbrowser-launcher -y")
+    execute("flatpak install flathub com.github.micahflee.torbrowser-launcher -y")
 
 if install_ShotWell == "1":
     what_is_it("ShotWell")
     apt_install(root_password,"shotwell")
-
 
 if install_TimeShift == "1":
     what_is_it("TimeShift")
@@ -667,41 +641,33 @@ if install_TimeShift == "1":
     update_packege(root_password)
     apt_install(root_password,"timeshift")
 
-# TODO Redo installation processs
+# TODO Check
 if install_PeaZip == "1":
     what_is_it("PeaZip")
-    execute_as_root(root_password,"wget https://github.com/peazip/PeaZip/releases/download/7.8.0/peazip_7.8.0.LINUX.x86_64.GTK2.deb")
-    apt_install(root_password,"gdebi-core")
-    apt_install(root_password,"libatk1.0-0:i386 libc6:i386 libcairo2:i386 libgdk-pixbuf2.0-0:i386 libglib2.0-0:i386 libgtk2.0-0:i386 libpango1.0-0:i386 libx11-6:i386 libcanberra-gtk-module:i386")
-    apt_install(root_password,"./peazip_7.8.0.LINUX.x86_64.GTK2.deb")
-    execute_as_root(root_password,"sudo rm peazip_7.8.0.LINUX.x86_64.GTK2.deb")
-
-if install_PeaZip == "2":
+    execute_as_root(root_password,"wget -nc https://github.com/peazip/PeaZip/releases/download/9.5.0/peazip_9.5.0.LINUX.GTK2-1_amd64.deb")
+    apt_install(root_password,"./peazip_*")
+elif install_PeaZip == "2":
     what_is_it("PeaZip[flatpak]")
     update_packege(root_password)
     apt_install(root_password,"flatpak")
-    execute_as_root(root_password,"flatpak install flathub io.github.peazip.PeaZip -y")
+    execute("flatpak install flathub io.github.peazip.PeaZip -y")
 
+# TODO Check
 if install_VSC == "1":
-    # TODO Replace with VScodium
-    what_is_it("Visual Studio Code")
-    apt_install(root_password,"software-properties-common apt-transport-https wget")
-    execute_as_root(root_password,"wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -")
-    execute_as_root(root_password,'sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"')
-    update_packege(root_password)
-    apt_install(root_password,"code")
-
-if install_VSC == "1":
-    # TODO Replace with VScodium
-    what_is_it("Visual Studio Code [flatpak]")
+    what_is_it("VScodium")
+    execute("wget -nc https://github.com/VSCodium/vscodium/releases/download/1.84.0.23306/codium_1.84.0.23306_amd64.deb")
+    apt_install(root_password,"./codium_*")
+elif install_VSC == "1":
+    what_is_it("VScodium [flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password,"flatpak install flathub com.visualstudio.code -y")
+    execute(root_password,"flatpak install flathub com.vscodium.codium -y")
 
+# TODO Check
 if install_PyCharm == "1":
     what_is_it("PyCharm")
-    # TODO !!!
-
-if install_PyCharm == "2":
+    execute("wget -nc https://download-cdn.jetbrains.com/python/pycharm-community-2023.2.3.tar.gz")
+    execute("tar xvf pycharm-community-2023.2.3.tar.gz -C ~/pycharm-community")
+elif install_PyCharm == "2":
     what_is_it("PyCharm [flatpak]")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.jetbrains.PyCharm-Community -y")
@@ -728,8 +694,8 @@ if install_BleachBit == "1":
 if install_Stacer == "1":
     what_is_it("Stacer")
     if choose_method_for_Debian:
-        execute_as_root(root_password,"wget https://sourceforge.net/projects/stacer/files/v1.0.8/stacer_1.0.8_amd64.deb")
-        execute_as_root(root_password,"dpkg --install stacer_1.0.8_amd64.deb ")
+        execute_as_root(root_password,"wget -nc https://github.com/oguzhaninan/Stacer/releases/download/v1.1.0/stacer_1.1.0_amd64.deb")
+        apt_install(root_password,"./stacer_*")
     else:
         apt_install(root_password,"stacer")
 
@@ -754,26 +720,20 @@ if install_OBS == "1":
 if install_Steam == "1":
     what_is_it("Steam")
     apt_install(root_password,"steam")
-
-if install_Steam == "2":
+elif install_Steam == "2":
     what_is_it("Steam [flatpak]")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.valvesoftware.Steam -y")
 
-# TODO REDO
+# TODO Check
 if install_Teams == "1":
-    what_is_it("MS Teams")
-    execute_as_root(root_password,"curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -")
-    execute_as_root(root_password, "sudo sh -c 'echo " + '"deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"' + " > /etc/apt/sources.list.d/teams.list"+"'")
-    update_packege(root_password)
-    apt_install(root_password,"teams")
-
-if install_Teams == "2":
+    what_is_it("MS Teams [Unofficial flatpak]")
+    flatpak(root_password)
+    execute_as_root(root_password,"flatpak install flathub com.github.IsmaelMartinez.teams_for_linux -y")
+elif install_Teams == "2":
     what_is_it("MS Teams [flatpak]")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub com.microsoft.Teams -y")
-# TODO REDO *
-
 
 if install_Gpp == "1":
     what_is_it("G++")
@@ -814,12 +774,10 @@ if install_Baobab == "1":
     what_is_it("Baobab Disk Analyzer")
     execute_as_root(root_password,"sudo apt-get install baobab --yes")
 
-
 if install_CodeBlocks == "1":
     what_is_it("Code::Blocks")
     apt_install(root_password,"codeblocks")
-
-if install_CodeBlocks == "2":
+elif install_CodeBlocks == "2":
     what_is_it("Code::Blocks via flatpak")
     flatpak(root_password)
     execute_as_root(root_password,"flatpak install flathub org.codeblocks.codeblocks")
@@ -833,7 +791,7 @@ if is_fixing_dependencies == "1":
     for i in range(3):
         print(f"{i})")
         execute_as_root(root_password,"sudo apt --fix-broken install --yes")
-        execute_as_root(root_password,"sudo apt install -f -y")  #  Updating and fixing dependencies
+        execute_as_root(root_password,"sudo apt install -f -y")
         execute_as_root(root_password,"sudo apt install dpkg --fix-missing")
         execute_as_root(root_password,"sudo dpkg --configure -a")
 
