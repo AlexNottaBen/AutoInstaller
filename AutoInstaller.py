@@ -5,32 +5,32 @@ from os import system as execute
 from getpass import getpass as input_password
 
 
-def execute_as_root(root_password, command):
+def execute_as_root(root_password="live", command="echo"):
     execute("echo %s|sudo -S %s" % (root_password, command))
 
 
-def what_is_it(program_name):
+def what_is_it(program_name=""):
     print("\n==================== Install " + program_name + " ====================")
 
 
-def update_packege(root_password):
+def update_packege(root_password="live"):
     print("\n==================== Update ====================")
     execute("echo %s|sudo -S %s" % (root_password, "sudo apt update"))
 
 
-def upgrade_packeges(root_password):
+def upgrade_packeges(root_password="live"):
     print("\n==================== Upgrade ====================")
     execute("echo %s|sudo -S %s" % (root_password, "sudo apt upgrade --yes"))
 
 
-def apt_install(root_password, program_name):
+def apt_install(root_password="live", program_name=""):
     execute(
         "echo %s|sudo -S %s"
         % (root_password, "sudo apt install " + program_name + " --yes")
     )
 
 
-def flatpak(root_password):
+def flatpak(root_password="live"):
     what_is_it("flatpak")
     apt_install(root_password, "flatpak")
     update_packege(root_password)
@@ -250,7 +250,7 @@ if Selected == "2":
     install_Kate = "1"
     install_Gpp = "1"
     install_PyCharm = "0"
-    install_Caja = "1"  #  For Open The Trash by The Plank on Debian
+    install_Caja = "1"
     install_CodeBlocks = "1"
     install_Krita = "1"
     install_Kdenline = "1"
@@ -350,7 +350,7 @@ if Selected == "F":
     do_clean = "1"
     is_fixing_dependencies = "1"
     install_XnViewMP = "1"
-    install_Caja = "1"  #  For Open The Trash by The Plank on Debian
+    install_Caja = "1"
     install_Krita = "1"
     install_Kdenline = "1"
     install_GnomeDisk = "1"
@@ -956,8 +956,22 @@ elif install_CodeBlocks == "2":
     execute_as_root(root_password, "flatpak install flathub org.codeblocks.codeblocks")
 
 if install_GodotEngine == "1":
+    what_is_it("Godot 3")
+    execute_as_root(root_password, "godot3")
+elif install_GodotEngine == "2":
+    what_is_it("Godot 3 [Flatpak]")
     flatpak(root_password)
-    execute_as_root(root_password, "flatpak install flathub org.godotengine.Godot -y")
+    execute_as_root(root_password, "flatpak install flathub org.godotengine.Godot3 -y")
+
+if install_IPTables == "1":
+    what_is_it("IPTables")
+    apt_install(root_password, "iptables iptables-persistent")
+
+if install_UFW == "1":
+    what_is_it("UFW")
+    apt_install(root_password, "ufw")
+    execute_as_root(root_password, "sudo systemctl enable ufw --now")
+    execute("systemctl status ufw")
 
 if is_fixing_dependencies == "1":
     print(
