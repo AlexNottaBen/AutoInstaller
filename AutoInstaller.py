@@ -190,13 +190,14 @@ print("P2 - All For Godot Developer")
 
 Selected = input("Select > ")
 
-if Selected == "1":
-    update_intel_microcodes = "1"
+if Selected == "1" or Selected == "2":
+    update_amd64_microcodes = "1"
     install_flatpak = "1"
     is_update = "1"
     is_upgrade = "1"
     is_fix_plank = "1"
-    install_VLC = "1"
+    install_VLC = "2"
+    install_MPV = "1"
     install_GIMP = "1"
     install_PeaZip = "1"
     install_VBOX = "1"
@@ -226,48 +227,7 @@ if Selected == "1":
     install_DoubleCmd = "1"
     install_Baobab = "1"
     install_GnomeSoftware = "1"
-    choose_method_for_Debian = True
-
-if Selected == "2":
-    update_intel_microcodes = "1"
-    install_flatpak = "1"
-    is_update = "1"
-    is_upgrade = "1"
-    is_fix_plank = "1"
-    install_VLC = "1"
-    install_GIMP = "1"
-    install_PeaZip = "1"
-    install_VBOX = "1"
-    install_Wine = "1"
-    install_LibreWolf = "1"
-    install_UnGoogledChromium = "1"
-    install_Tor = "1"
-    install_VSC = "1"
-    install_LibreOffice = "1"
-    install_Gparted = "1"
-    install_QbitTorrent = "1"
-    install_SSR = "1"
-    install_Steam = "1"
-    install_Telegram = "2"
-    install_Teams = "1"
-    do_clean = "1"
-    is_fixing_dependencies = "1"
-    install_ShotWell = "1"
-    install_Stacer = "1"
-    install_Kate = "1"
-    install_Gpp = "1"
-    install_PyCharm = "0"
-    install_Caja = "1"
-    install_CodeBlocks = "1"
-    install_Krita = "1"
-    install_Kdenline = "1"
-    install_KolourPaint = "1"
-    install_GnomeDisk = "1"
-    install_DoubleCmd = "1"
-    install_Baobab = "1"
-    install_KolourPaint = "1"
-    install_GnomeSoftware = "1"
-    choose_method_for_Debian = False
+    choose_method_for_Debian = True if Selected == "1" else False
 
 if Selected == "3":
     install_flatpak = "0"
